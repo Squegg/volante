@@ -154,6 +154,7 @@ return array(
 		'URI'        => 'Laravel\\URI',
 		'Validator'  => 'Laravel\\Validator',
 		'View'       => 'Laravel\\View',
+		'Model'     => 'Eloquent\\Model'
 	),
 
 );

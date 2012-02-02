@@ -54,7 +54,7 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'shub',
+			'database' => 'tubesworld',
 			'username' => 'root',
 			'password' => 'vagrant',
 			'charset'  => 'utf8',

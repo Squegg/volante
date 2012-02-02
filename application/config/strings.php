@@ -25,7 +25,10 @@ return array(
 
 		'account' => 'accounts',
 		'role' => 'roles',
-
+		'page' => 'pages',
+		'region' => 'regions',
+		'dbasset' => 'assets',
+		'language' => 'languages'
 	),
 
 	/*
