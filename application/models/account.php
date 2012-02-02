@@ -1,5 +1,5 @@
 <?php
-class Account extends Eloquent\Model {
+class Account extends Model {
 
 	public static $timestamps = true;
 

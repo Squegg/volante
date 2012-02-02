@@ -1,5 +1,5 @@
 <?php
-class Role extends Eloquent\Model {
+class Role extends Model {
 
 	public function role_lang()
 	{
@@ -10,15 +10,5 @@ class Role extends Eloquent\Model {
 	{
 		return $this->has_and_belongs_to_many('Account');
 	}
-
-/*	public function lang()
-	{
-		$lang = DB::table('role_lang')
-					->where_role_id($this->id)
-					->where_language_id(Auth::user()->language_id)
-					->first();
-
-		return $lang;
-	}*/
 
 }
