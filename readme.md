@@ -1,13 +1,6 @@
-# ShopHub
+# Lara
 
-ShopHub aims to become the one stop shop for creating a webshop.
-With ShopHub, anyone can start a webshop in no time, self hosted with a ShopHub API connector, or hosted by ShopHub.
-Products can easily be added to the stores from different manufacturers.
-Upon a sale, the product will immedinately be sent from the manufacturer to the customer.
-
-This way, worrying about stock and investments is not needed anymore, and manufacturers have a new business model.
-
-Besides the connectors to enable 3th party webshop's (for example Magento) to integrate with ShopHub, connectors will be made to integrate ShopHub with the manufacturers' backend systems like SAP / Navision.
+The simple Laravel CMS
 
 Feel free to fork & help!
 
