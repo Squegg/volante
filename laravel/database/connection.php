@@ -214,7 +214,14 @@ class Connection {
 		// performance to diagnose bottlenecks.
 		$time = microtime(true);
 
-		$result = $statement->execute($bindings);
+		try {
+			$result = $statement->execute($bindings);
+		}
+		catch(\Exception $e) {
+			echo 'Error in sql: ' . $sql . '<br><br>';
+			echo '<pre>'.$e.'</pre>';
+			die;
+		}
 
 		$time = number_format((microtime(true) - $time) * 1000, 2);
 
@@ -254,7 +261,7 @@ class Connection {
 
 					$sql = preg_replace('~\(\.\.\.\)~', "({$parameters})", $sql, 1);
 				}
-			}			
+			}
 		}
 
 		return trim($sql);
