@@ -13,7 +13,7 @@ class Add_Cms_Tables {
 		{
 			$table->create();
 			$table->increments('id');
-			$table->string('uri');
+			$table->boolean('homepage');
 			$table->boolean('online');
 			$table->timestamp('created_at');
 			$table->timestamp('updated_at');
@@ -25,6 +25,7 @@ class Add_Cms_Tables {
 			$table->increments('id');
 			$table->integer('page_id');
 			$table->integer('language_id');
+			$table->string('uri');
 			$table->boolean('active');
 			$table->string('meta_title');
 			$table->string('meta_keyword');

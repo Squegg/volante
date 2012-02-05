@@ -6,6 +6,9 @@ return array(
 		),
 		'admin/accounts' => array(
 			'name' => 'Accounts',
+		),
+		'admin/modules' => array(
+			'name' => 'Modules',
 		)
 	),
 	'frontend' => array(

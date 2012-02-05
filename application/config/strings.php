@@ -28,7 +28,8 @@ return array(
 		'page' => 'pages',
 		'region' => 'regions',
 		'dbasset' => 'assets',
-		'language' => 'languages'
+		'language' => 'languages',
+		'module' => 'modules'
 	),
 
 	/*

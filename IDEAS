@@ -1,0 +1,68 @@
+Modules
+	NEWSLETTER
+		Controllers
+			admin/
+				newsletters/
+					newletters
+					listings
+					registrants
+		Widgets
+			Signup form
+				Settings
+					listing
+			Unregister
+			Settings
+
+	WEBSHOP
+		Controllers
+			admin/
+				webshop/
+					categories
+					products
+					orders
+					analytics
+					settings
+		Widgets
+			Product listing
+				GET
+					offset
+					limit
+				Settings
+					type
+						- Top sold
+						- Most viewed
+						- Best rating
+						- All
+					sort by
+						- columns
+					order
+						- ASC
+						- DESC
+					limit
+			Product
+			Add to cart [needs Product]
+			Related products [needs Product]
+			Rate [needs product]
+			Reviews [needs product]
+			Checkout
+		Libraries
+			Payments
+				Providers
+					- PayPal
+					- Creditcard
+					- iDeal
+			Shipping
+				Providers
+					- UPS
+					- DHL
+					- FedEx
+
+	SOCIAL
+		Widget
+			Facebook
+			Twitter
+			Facebox
+			Like
+
+	FORUM
+		Community, have fun ;)

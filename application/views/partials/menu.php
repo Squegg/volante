@@ -2,7 +2,7 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<h3 class="brand">
-				<a href="#">ShopHub</a>
+				<a href="#">LaraCMS</a>
 			</h3>
 
 			<?= HTML::menu($menu) ?>

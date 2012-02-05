@@ -1,4 +1,7 @@
 <div id="main">
+	<div class="page-header">
+		<h1>Add account</h1>
+	</div>
 	<?= Form::open('admin/accounts/add', 'POST', array('class' => 'form-horizontal')) ?>
 		<?= Form::field('text', 'name', 'Name', array(Input::old('name')), array('error' => $errors->first('name'))) ?>
 		<?= Form::field('text', 'email', 'E-mail address', array(Input::old('email')), array('error' => $errors->first('email'))) ?>

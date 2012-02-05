@@ -1,66 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Simply tell Laravel the HTTP verbs and URIs it should respond to. It is a
-| breeze to setup your applications using Laravel's RESTful routing, and it
-| is perfectly suited for building both large applications and simple APIs.
-| Enjoy the fresh air and simplicity of the framework.
-|
-| Let's respond to a simple GET request to http://example.com/hello:
-|
-|		Router::register('GET /hello', function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| You can even respond to more than one URI:
-|
-|		Router::register('GET /hello, GET /world', function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| It's easy to allow URI wildcards using (:num) or (:any):
-|
-|		Router::register('GET /hello/(:any)', function($name)
-|		{
-|			return "Welcome, $name.";
-|		});
-|
-*/
-
-/*
-|--------------------------------------------------------------------------
-| Route Filters
-|--------------------------------------------------------------------------
-|
-| Filters provide a convenient method for attaching functionality to your
-| routes. The built-in "before" and "after" filters are called before and
-| after every request to your application, and you may even create other
-| filters that can be attached to individual routes.
-|
-| Let's walk through an example...
-|
-| First, define a filter:
-|
-|		Filter::register('filter', function()
-|		{
-|			return 'Filtered!';
-|		});
-|
-| Next, attach the filter to a route:
-|
-|		Router::register('GET /', array('before' => 'filter', function()
-|		{
-|			return 'Hello World!';
-|		}));
-|
-*/
-
 Filter::register('before', function()
 {
 	// Do stuff before every request to your application...
@@ -86,6 +24,17 @@ Filter::register('can', function($action, $resource) {
 });
 
 // Routes
+Router::register('GET /', 'frontend.home@index');
+Router::register('GET /home/(:any?)', 'frontend.home@index');
+Router::register(array('GET /account/(:any?)', 'PUT /account/(:any?)', 'POST /account/(:any?)'), 'frontend.account@(:1)');
+
+Router::register(array('GET /admin', 'PUT /admin', 'POST /admin', 'DELETE /admin', 'UPDATE /admin'), 'admin.dashboard@index');
+Router::register(array('GET /admin/dashboard', 'PUT /admin/dashboard', 'POST /admin/dashboard', 'DELETE /admin/dashboard', 'UPDATE /admin/dashboard'), 'admin.dashboard@index');
+Router::register(array('GET /admin/accounts/(:any?)', 'PUT /admin/accounts/(:any?)', 'POST /admin/accounts/(:any?)', 'DELETE /admin/accounts/(:any?)', 'UPDATE /admin/accounts/(:any?)'), 'admin.accounts@(:1)');
+Router::register(array('GET /admin/accounts/(:any)/(:any?)', 'PUT /admin/accounts/(:any)/(:any?)', 'POST /admin/accounts/(:any)/(:any?)', 'DELETE /admin/accounts/(:any)/(:any?)', 'UPDATE /admin/accounts/(:any)/(:any?)'), 'admin.accounts@(:1)');
+Router::register(array('GET /admin/modules/(:any?)', 'PUT /admin/modules/(:any?)', 'POST /admin/modules/(:any?)', 'DELETE /admin/modules/(:any?)', 'UPDATE /admin/modules/(:any?)'), 'admin.modules@(:1)');
+Router::register(array('GET /admin/modules/(:any)/(:any?)', 'PUT /admin/modules/(:any)/(:any?)', 'POST /admin/modules/(:any)/(:any?)', 'DELETE /admin/modules/(:any)/(:any?)', 'UPDATE /admin/modules/(:any)/(:any?)'), 'admin.modules@(:1)');
+
 CMS::routes();
 
 View::composer('layouts.default', function($view)

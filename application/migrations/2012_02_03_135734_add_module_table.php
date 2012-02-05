@@ -1,6 +1,6 @@
 <?php
 
-class Add_Language_Table {
+class Add_Module_Table {
 
 	/**
 	 * Make changes to the database.
@@ -9,12 +9,14 @@ class Add_Language_Table {
 	 */
 	public function up()
 	{
-		Schema::table('languages', function($table)
+		Schema::table('modules', function($table)
 		{
 			$table->create();
 			$table->increments('id');
-			$table->string('language_key')->unique();
-			$table->string('name');
+			$table->float('version');
+			$table->string('module_key');
+			$table->timestamp('created_at');
+			$table->timestamp('updated_at');
 		});
 	}
 
@@ -25,7 +27,7 @@ class Add_Language_Table {
 	 */
 	public function down()
 	{
-		Schema::table('languages', function($table)
+		Schema::table('modules', function($table)
 		{
 			$table->drop();
 		});
