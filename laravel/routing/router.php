@@ -23,7 +23,7 @@ class Router {
 	 */
 	public static $patterns = array(
 		'(:num)' => '([0-9]+)',
-		'(:any)' => '([a-zA-Z0-9\.\-_]+)',
+		'(:any)' => '([a-zA-Z0-9\.\-_%]+)',
 	);
 
 	/**
@@ -33,7 +33,7 @@ class Router {
 	 */
 	public static $optional = array(
 		'/(:num?)' => '(?:/([0-9]+)',
-		'/(:any?)' => '(?:/([a-zA-Z0-9\.\-_]+)',
+		'/(:any?)' => '(?:/([a-zA-Z0-9\.\-_%]+)',
 	);
 
 	/**
@@ -254,8 +254,8 @@ class Router {
 	/**
 	 * Locate the URI segment matching a controller name.
 	 *
-	 * @param  string  $directory
 	 * @param  array   $segments
+	 * @param  string  $directory
 	 * @return int
 	 */
 	protected static function locate($segments, $directory)

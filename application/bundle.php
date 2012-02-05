@@ -37,5 +37,10 @@ Autoloader::psr(array(
 */
 
 Autoloader::map(array(
+<<<<<<< HEAD
 	'Role_lang' => path('app').'models/role_lang.php',
 ));
+=======
+	'Base_Controller' => path('app').'controllers/base.php',
+));
+>>>>>>> laravel/develop
