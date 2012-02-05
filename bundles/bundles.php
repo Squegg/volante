@@ -43,6 +43,6 @@ return array(
 		'auto' => true
 	),
 	'bug-lost' => array(
-		'auto' => false
+		'auto' => true
 	)
 );

@@ -1,6 +1,6 @@
 <?php
 class Admin_Dashboard_Controller extends Controller {
-    
+
     public $restful = true;
     public $layout = true;
 
@@ -26,7 +26,7 @@ class Admin_Dashboard_Controller extends Controller {
 
 	public function get_index()
 	{
-		$this->layout->content = View::make('admin.dashboard')->with('account', $account);
+		$this->layout->content = View::make('admin.dashboard');
 	}
 
 }

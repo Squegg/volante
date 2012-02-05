@@ -29,7 +29,9 @@ return array(
 		'region' => 'regions',
 		'dbasset' => 'assets',
 		'language' => 'languages',
-		'module' => 'modules'
+		'module' => 'modules',
+		'layout' => 'layouts',
+		'layoutgroup' => 'layoutgroups'
 	),
 
 	/*

@@ -4,6 +4,9 @@ return array(
 		'admin/dashboard' => array(
 			'name' => 'Dashboard'
 		),
+		'admin/layouts' => array(
+			'name' => 'Layouts',
+		),
 		'admin/accounts' => array(
 			'name' => 'Accounts',
 		),

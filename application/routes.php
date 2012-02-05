@@ -35,6 +35,9 @@ Router::register(array('GET /admin/accounts/(:any)/(:any?)', 'PUT /admin/account
 Router::register(array('GET /admin/modules/(:any?)', 'PUT /admin/modules/(:any?)', 'POST /admin/modules/(:any?)', 'DELETE /admin/modules/(:any?)', 'UPDATE /admin/modules/(:any?)'), 'admin.modules@(:1)');
 Router::register(array('GET /admin/modules/(:any)/(:any?)', 'PUT /admin/modules/(:any)/(:any?)', 'POST /admin/modules/(:any)/(:any?)', 'DELETE /admin/modules/(:any)/(:any?)', 'UPDATE /admin/modules/(:any)/(:any?)'), 'admin.modules@(:1)');
 
+Router::register(array('GET /admin/layouts/(:any?)', 'PUT /admin/layouts/(:any?)', 'POST /admin/layouts/(:any?)', 'DELETE /admin/layouts/(:any?)', 'UPDATE /admin/layouts/(:any?)'), 'admin.layouts@(:1)');
+Router::register(array('GET /admin/layouts/(:any)/(:any?)', 'PUT /admin/layouts/(:any)/(:any?)', 'POST /admin/layouts/(:any)/(:any?)', 'DELETE /admin/layouts/(:any)/(:any?)', 'UPDATE /admin/layouts/(:any)/(:any?)'), 'admin.layouts@(:1)');
+
 CMS::routes();
 
 View::composer('layouts.default', function($view)
