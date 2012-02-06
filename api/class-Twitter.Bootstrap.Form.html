@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.4.1" />
+
+	<title>Class Twitter\Bootstrap\Form</title>
+
+	<script type="text/javascript" src="resources/combined.js?1841058525"></script>
+	<script type="text/javascript" src="elementlist.js?1614783659"></script>
+	<script type="text/javascript">
+		var ApiGen = ApiGen || {};
+		ApiGen.options = {"elementDetailsCollapsed":true,"elementsOrder":"natural"};
+	</script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3295955786" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+		<div id="groups">
+
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-Twitter.html">Twitter</a>
+						<span></span>
+						<ul>
+				<li class="active"><a href="namespace-Twitter.Bootstrap.html">Bootstrap</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Twitter.Bootstrap.Form.html">Form</a></li>
+				<li><a href="class-Twitter.Bootstrap.HTML.html">HTML</a></li>
+				<li><a href="class-Twitter.Bootstrap.Paginator.html">Paginator</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Twitter.Bootstrap.html" title="Summary of Twitter\Bootstrap"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Form</h1>
+
+	<div class="description">
+	
+<p>Form generation geared around Bootstrap from Twitter.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Laravel\Form
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b>Twitter\Bootstrap\Form</b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Twitter.html">Twitter</a>\<a href="namespace-Twitter.Bootstrap.html">Bootstrap</a><br />
+
+				<b>See:</b>
+				<a
+href="http://twitter.github.com/bootstrap/">http://twitter.github.com/bootstrap/</a><br />
+		<b>Located at</b> <a href="source-class-Twitter.Bootstrap.Form.html#3" title="Go to source code">libraries/twitter/bootstrap/form.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="field" id="_field">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_field">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#30" title="Go to source code">field</a>( <span>string <var>$type</var></span>, <span>string <var>$name</var></span>, <span>string <var>$label</var></span>, <span>array <var>$args</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a HTML form field.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a HTML form field.</p>
+
+<pre>
+<span class="php-keyword1">echo</span> Form::field(<span
+class="php-quote">'text'</span>, <span class="php-quote">'name'</span>, <span
+class="php-quote">'Your name'</span>, <span
+class="php-keyword1">array</span>(<span class="php-quote">'Phill'</span>), <span
+class="php-keyword1">array</span>(<span
+class="php-quote">'help'</span> =&gt; <span
+class="php-quote">'Your full name'</span>, <span
+class="php-quote">'error'</span> =&gt; <span
+class="php-keyword1">true</span>));
+</pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br> Any Laravel\Form method with $name as the first parameter.</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br> The name of the HTML field.</dd>
+					<dt><var>$label</var></dt>
+					<dd><code>string</code><br> A HTML label for this field.</dd>
+					<dt><var>$args</var></dt>
+					<dd><code>array</code><br> Additional parameters passed in order to the Form method.</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>array</code><br> Additional form field parameters; help, error, warning or success.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="field_list" id="_field_list">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_field_list">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#81" title="Go to source code">field_list</a>( <span>string <var>$label</var></span>, <span>array <var>$fields</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$label</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$fields</var></dt>
+					<dd><code>array</code></dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>array</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="labelled_checkbox" id="_labelled_checkbox">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_labelled_checkbox">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#121" title="Go to source code">labelled_checkbox</a>( <span>string <var>$name</var></span>, <span>string <var>$label</var></span>, <span>string <var>$value</var> = <span class="php-num">1</span></span>, <span>boolean <var>$checked</var> = <span class="php-keyword1">false</span></span>, <span>array <var>$attributes</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a HTML checkbox input element with a label.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a HTML checkbox input element with a label.</p>
+
+<pre>
+<span
+class="php-comment">// Create a labelled checkbox element that is selected by default</span>
+<span
+class="php-keyword1">echo</span> Form::checkbox(<span
+class="php-quote">'Remember my details'</span>, <span
+class="php-quote">'remember'</span>, <span class="php-quote">'yes'</span>, <span
+class="php-keyword1">true</span>);
+</pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$label</dd>
+					<dt><var>$label</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$checked</var></dt>
+					<dd><code>boolean</code></dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						Laravel\Form::checkbox()<br />
+				</div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="actions" id="_actions">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_actions">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#145" title="Go to source code">actions</a>( <span>mixed <var>$buttons</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a group of form actions (buttons).</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a group of form actions (buttons).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$buttons</var></dt>
+					<dd><code>mixed</code><br> String or array of HTML buttons.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="submit" id="_submit">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_submit">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#161" title="Go to source code">submit</a>( <span>string <var>$value</var></span>, <span>array <var>$attributes</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a HTML submit input element.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a HTML submit input element.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reset" id="_reset">
+
+		<td class="attributes"><code>
+			
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reset">#</a>
+		<code><a href="source-class-Twitter.Bootstrap.Form.html#176" title="Go to source code">reset</a>( <span>string <var>$value</var></span>, <span>array <var>$attributes</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a HTML reset input element.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a HTML reset input element.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="TYPE_VERTICAL" id="TYPE_VERTICAL">
+
+		<td class="attributes"><code>
+			
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-Twitter.Bootstrap.Form.html#10" title="Go to source code"><b>TYPE_VERTICAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'vertical-form'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_VERTICAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Stacked, left-aligned labels over controls</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Stacked, left-aligned labels over controls</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="TYPE_HORIZONTAL" id="TYPE_HORIZONTAL">
+
+		<td class="attributes"><code>
+			
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-Twitter.Bootstrap.Form.html#15" title="Go to source code"><b>TYPE_HORIZONTAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'horizontal-form'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_HORIZONTAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Float left, right-aligned labels on same line as controls</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Float left, right-aligned labels on same line as controls</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="TYPE_INLINE" id="TYPE_INLINE">
+
+		<td class="attributes"><code>
+			
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-Twitter.Bootstrap.Form.html#20" title="Go to source code"><b>TYPE_INLINE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'inline-form'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_INLINE" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Left-aligned label and inline-block controls for compact style</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Left-aligned label and inline-block controls for compact style</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="TYPE_SEARCH" id="TYPE_SEARCH">
+
+		<td class="attributes"><code>
+			
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-Twitter.Bootstrap.Form.html#25" title="Go to source code"><b>TYPE_SEARCH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'search-form'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_SEARCH" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Extra-rounded text input for a typical search aesthetic</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Extra-rounded text input for a typical search aesthetic</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.4.1</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -38,14 +38,19 @@ Router::register(array('GET /admin/modules/(:any)/(:any?)', 'PUT /admin/modules/
 Router::register(array('GET /admin/layouts/(:any?)', 'PUT /admin/layouts/(:any?)', 'POST /admin/layouts/(:any?)', 'DELETE /admin/layouts/(:any?)', 'UPDATE /admin/layouts/(:any?)'), 'admin.layouts@(:1)');
 Router::register(array('GET /admin/layouts/(:any)/(:any?)', 'PUT /admin/layouts/(:any)/(:any?)', 'POST /admin/layouts/(:any)/(:any?)', 'DELETE /admin/layouts/(:any)/(:any?)', 'UPDATE /admin/layouts/(:any)/(:any?)'), 'admin.layouts@(:1)');
 
+Router::register(array('GET /admin/pages/(:any?)', 'PUT /admin/pages/(:any?)', 'POST /admin/pages/(:any?)', 'DELETE /admin/pages/(:any?)', 'UPDATE /admin/pages/(:any?)'), 'admin.pages@(:1)');
+Router::register(array('GET /admin/pages/(:any)/(:any?)', 'PUT /admin/pages/(:any)/(:any?)', 'POST /admin/pages/(:any)/(:any?)', 'DELETE /admin/pages/(:any)/(:any?)', 'UPDATE /admin/pages/(:any)/(:any?)'), 'admin.pages@(:1)');
+
+Router::register(array('GET /admin/settings/(:any?)', 'PUT /admin/settings/(:any?)', 'POST /admin/settings/(:any?)', 'DELETE /admin/settings/(:any?)', 'UPDATE /admin/settings/(:any?)'), 'admin.settings@(:1)');
+Router::register(array('GET /admin/settings/(:any)/(:any?)', 'PUT /admin/settings/(:any)/(:any?)', 'POST /admin/settings/(:any)/(:any?)', 'DELETE /admin/settings/(:any)/(:any?)', 'UPDATE /admin/settings/(:any)/(:any?)'), 'admin.settings@(:1)');
+
 CMS::routes();
 
 View::composer('layouts.default', function($view)
 {
 	Asset::container('header')->add('jquery', 'js/jquery.min.js');
-	Asset::container('header')->add('bootstrap', 'bootstrap/bootstrap.css');
-	Asset::container('footer')->add('bootstrap', 'bootstrap/js/bootstrap-buttons.js', 'jquery');
-	Asset::container('footer')->add('bootstrap', 'bootstrap/js/bootstrap-dropdown.js', 'jquery');
+	Asset::container('header')->add('bootstrap', 'bootstrap/bootstrap/css/bootstrap.min.css');
+	Asset::container('footer')->add('bootstrap', 'bootstrap/bootstrap/js/bootstrap.js', 'jquery');
 	Asset::container('header')->add('main', 'css/main.css');
 
 	$view->footer = View::make('partials.footer');

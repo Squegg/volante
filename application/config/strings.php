@@ -31,7 +31,8 @@ return array(
 		'language' => 'languages',
 		'module' => 'modules',
 		'layout' => 'layouts',
-		'layoutgroup' => 'layoutgroups'
+		'layoutgroup' => 'layoutgroups',
+		'setting' => 'settings'
 	),
 
 	/*

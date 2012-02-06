@@ -1,13 +1,15 @@
 <div id="main">
 	<div class="row">
 		<div class="span12">
-			<h1>Welcome to ShopHub</h1>
-			<hr class="soften">
+			<div class="page-header">
+				<h1>Welcome to ShopHub</h1>
+			</div>
+			<?= Notification::show() ?>
 			<div class="row">
 				<div class="span12">
 					<div class="well">
 						<div class="pull-right offset1 center-align">
-							<a class="btn btn-huge primary">Open Your Webshop Now</a><br>
+							<a class="btn btn-huge btn-primary">Open Your Webshop Now</a><br>
 							<br>
 							<h2>Free. Easy. Secure.</h2>
 							<small>No Invenary needed!</small>
@@ -54,7 +56,7 @@
 				<h1>I want a webshop</h1><br>
 				Ready to start selling? Your shop is waiting to be customized!<br>
 				<br>
-				<a class="btn large primary">Open Your Webshop Now</a><br>
+				<a class="btn btn-large btn-primary">Open Your Webshop Now</a><br>
 				<br>
 				<h2>Free. Easy. Secure.</h2>
 				<small>No Invenary needed!</small>
@@ -65,7 +67,7 @@
 				<h1>I am a Manufacturer</h1><br>
 				Selling your goods via the ShopHub network is a no-brainer. We welcome you!<br>
 				<br>
-				<a class="btn large primary">Sell Or Connect With ShopHub</a><br>
+				<a class="btn btn-large btn-primary">Sell Or Connect With ShopHub</a><br>
 				<br>
 				<h2>Simple. Easy. Secure.</h2>
 				<small>Integrates with Navision & SAP</small>

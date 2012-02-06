@@ -4,6 +4,9 @@ return array(
 		'admin/dashboard' => array(
 			'name' => 'Dashboard'
 		),
+		'admin/pages' => array(
+			'name' => 'Pages'
+		),
 		'admin/layouts' => array(
 			'name' => 'Layouts',
 		),
@@ -12,6 +15,9 @@ return array(
 		),
 		'admin/modules' => array(
 			'name' => 'Modules',
+		),
+		'admin/settings' => array(
+			'name' => 'Settings',
 		)
 	),
 	'frontend' => array(
@@ -25,7 +31,7 @@ return array(
 				'name' => 'Profile'
 			),
 			'account/logout' => array(
-				'name' => 'Uitloggen'
+				'name' => 'Logout'
 			)
 		),
 	),

@@ -74,7 +74,8 @@ class Admin_Accounts_Controller extends Controller {
 		}
 
 		$this->layout->content = View::make('admin.accounts.add')
-									 ->with('roles', $roles);
+									 ->with('roles', $roles)
+									 ->with('roles_lang', $roles_lang);
 	}
 
 	public function post_add()
@@ -171,7 +172,7 @@ class Admin_Accounts_Controller extends Controller {
 
 		$account->delete();
 
-		Notification::success('Successfully deleted account');
+		Notification::success('Successfully removed account');
 
 		return Redirect::to('admin/accounts/index');
 	}

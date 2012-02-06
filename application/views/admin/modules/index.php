@@ -21,9 +21,9 @@
 					<td>
 						<?= HTML::link($remote_modules[$module->module_key]['provider_url'], 'Visit homepage', array('target' => '_blank')) ?>
 					</td>
-					<td width="190" style="text-align:right">
-						<?= ! $module->is_latest($module->module_key, $module->version) ? HTML::link('admin/modules/update/'.$module->module_key, '<i class="icon check"></i> Update', array('class' => 'btn')) : '' ?>
-						<?php echo Authority::can('delete', 'Module', $module) ? '&nbsp; '.HTML::link('admin/modules/delete/'.$module->module_key, 'Uninstall', array('class' => 'btn danger')) : ''; ?>
+					<td width="190" class="last">
+						<?= ! $module->is_latest($module->module_key, $module->version) ? HTML::link('admin/modules/update/'.$module->module_key, '<i class="icon-check"></i> Update', array('class' => 'btn')) : '' ?>
+						<?php echo Authority::can('delete', 'Module', $module) ? '&nbsp; '.HTML::link('admin/modules/delete/'.$module->module_key, '<i class="icon-trash icon-white"></i> Uninstall', array('class' => 'btn btn-danger')) : ''; ?>
 					</td>
 				</tr>
 			<?php endforeach ?>
@@ -38,6 +38,7 @@
 		</div>
 	<?php endif ?>
 	<div class="pull-right">
-		<?= HTML::link('admin/modules/add', 'Install module', array('class' => 'btn large primary')) ?>
+		<?= HTML::link('admin/modules/add', 'Install module', array('class' => 'btn btn-large btn-primary')) ?>
 	</div>
+	<div class="clear"></div>
 </div>

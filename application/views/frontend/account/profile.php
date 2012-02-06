@@ -1,9 +1,17 @@
 <div id="main">
-	<h2>Profiel</h2>
-	<table class="zebra-striped compact">
-		<tr>
-			<td>E-mail address</td>
-			<td><?= Auth::user()->email ?></td>
-		</tr>
+	<div class="page-header">
+		<h1>Profile</h1>
+	</div>
+	<table class="table table-striped table-condensed">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<td><?= Auth::user()->name ?></td>
+			</tr>
+			<tr>
+				<th>E-mail address</th>
+				<td><?= Auth::user()->email ?></td>
+			</tr>
+		</tbody>
 	</table>
 </div>

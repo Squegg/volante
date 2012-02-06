@@ -1,5 +1,5 @@
 <div id="main">
-	<div class="page-header ">
+	<div class="page-header">
 		<h1>Install module</h1>
 	</div>
 	<?php Notification::show() ?>
@@ -8,7 +8,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th><i class="icon check"></i></th>
+						<th><i class="icon-check"></i></th>
 						<th>Name</th>
 						<th>Version</th>
 						<th>Homepage</th>
@@ -26,6 +26,6 @@
 				</tbody>
 			</table>
 		</div>
-		<?= Form::actions(array(Form::submit('Install selected modules', array('class' => 'btn large primary')))) ?>
+		<?= Form::actions(array(Form::submit('Install selected modules', array('class' => 'btn btn-large btn-primary')))) ?>
 	<?= Form::close() ?>
 </div>

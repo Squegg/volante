@@ -76,7 +76,7 @@ class Admin_Modules_Controller extends Controller {
 	{
 		$module = Module::find($id);
 
-		if( ! $module OR $id == 0 OR Authority::cannot('update', 'Module', $account))
+		if( ! $module OR $id == 0 OR Authority::cannot('update', 'Module', $page))
 		{
 			return Redirect::to('admin/modules/index');
 		}
@@ -93,7 +93,7 @@ class Admin_Modules_Controller extends Controller {
 			return Redirect::to('admin/modules/index');
 		}
 
-		$errors = $account->validate_and_update();
+		$errors = $page->validate_and_update();
 		if(count($errors->all()) > 0)
 		{
 			return Redirect::to('admin/modules/edit')
@@ -129,7 +129,7 @@ class Admin_Modules_Controller extends Controller {
 
 		$module->delete();
 
-		Notification::success('Successfully deleted module');
+		Notification::success('Successfully removed module');
 
 		return Redirect::to('admin/modules/index');
 	}

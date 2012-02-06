@@ -1,6 +1,6 @@
 <?php
 class Frontend_Account_Controller extends Controller {
-	
+
 	public $restful = true;
 	public $layout = true;
 
@@ -15,7 +15,7 @@ class Frontend_Account_Controller extends Controller {
 		$header_data = array(
 			'title' => 'Account'
 		);
-		
+
 		$this->layout = View::make('layouts.default')->with('header_data', $header_data)->with('menu_data', $menu_data);
 
 		return $this->layout;
@@ -54,6 +54,8 @@ class Frontend_Account_Controller extends Controller {
 	{
 		Auth::logout();
 
-		$this->layout->content = View::make('frontend.account.logout');
+		Notification::success('Successfully logged out!');
+
+		return Redirect::to('home');
 	}
 }

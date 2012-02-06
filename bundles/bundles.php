@@ -44,5 +44,9 @@ return array(
 	),
 	'bug-lost' => array(
 		'auto' => true
+	),
+	'apigen' => array(
+		'auto' => true,
+		'location' => 'apigen'
 	)
 );
