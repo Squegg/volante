@@ -15,6 +15,7 @@ class Add_Cms_Tables {
 			$table->increments('id');
 			$table->boolean('homepage');
 			$table->boolean('online');
+			$table->boolean('hidden');
 			$table->timestamp('created_at');
 			$table->timestamp('updated_at');
 		});
@@ -25,11 +26,12 @@ class Add_Cms_Tables {
 			$table->increments('id');
 			$table->integer('page_id');
 			$table->integer('language_id');
-			$table->string('uri');
+			$table->string('url');
 			$table->boolean('active');
 			$table->string('meta_title');
-			$table->string('meta_keyword');
+			$table->string('meta_keywords');
 			$table->string('meta_description');
+			$table->string('menu');
 			$table->string('title');
 			$table->text('content');
 			$table->timestamp('created_at');

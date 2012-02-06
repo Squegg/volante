@@ -3,6 +3,8 @@ class Account extends Model {
 
 	public static $timestamps = true;
 
+	public static $sequence = 'accounts_id_seq';
+
 	public $rules = array(
 		'email' => 'required|email',
 		'name' => 'required',

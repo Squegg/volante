@@ -33,7 +33,7 @@ class Admin_Pages_Controller extends Controller {
 			return Redirect::to('admin');
 		}
 
-		$pages = Page::all();
+		$pages = Page::with('lang')->get();
 
 		$this->layout->content = View::make('admin.pages.index')
 									 ->with('pages', $pages);
@@ -55,7 +55,7 @@ class Admin_Pages_Controller extends Controller {
 		$page = new Page;
 
 		$errors = $page->validate_and_insert();
-		if(count($errors->all()) > 0)
+		if(count($errors) > 0)
 		{
 			return Redirect::to('admin/pages/add')
 						 ->with('errors', $errors)
@@ -67,7 +67,7 @@ class Admin_Pages_Controller extends Controller {
 		return Redirect::to('admin/pages/index');
 	}
 
-	public function get_update($id = 0)
+	public function get_edit($id = 0)
 	{
 		$page = Page::find($id);
 
@@ -80,7 +80,7 @@ class Admin_Pages_Controller extends Controller {
 									 ->with('page', $page);
 	}
 
-	public function put_update($id = 0)
+	public function put_edit($id = 0)
 	{
 		$page = Page::find($id);
 		if( ! $page OR $id == 0)
@@ -101,11 +101,11 @@ class Admin_Pages_Controller extends Controller {
 		return Redirect::to('admin/pages/index');
 	}
 
-	public function get_delete($page_key = '')
+	public function get_delete($id = 0)
 	{
-		$page = Page::find($page_key);
+		$page = Page::find($id);
 
-		if( ! $page OR $page_key == '' OR Authority::cannot('delete', 'Page', $page))
+		if( ! $page OR $id == 0 OR Authority::cannot('delete', 'Page', $page))
 		{
 			return Redirect::to('admin/pages/index');
 		}

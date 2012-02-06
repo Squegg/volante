@@ -3,12 +3,20 @@ class Page extends Model {
 
 	public static $timestamps = true;
 
+	public static $sequence = 'pages_id_seq';
+
 	public $rules = array(
+		'title' => 'required'
 	);
 
 	public function children()
 	{
 		return $this->has_many('Page', 'parent_id');
+	}
+
+	public function lang()
+	{
+		return $this->has_many('PageLang');
 	}
 
 	public function regions()
@@ -18,18 +26,38 @@ class Page extends Model {
 
 	public function validate_and_insert()
 	{
-		$validator = new Validator(Input::all(), $this->rules);
+		$languages = Language::all();
+		$errors = array();
 
-		if ($validator->valid())
+		foreach($languages as $language)
 		{
-			$this->name = Input::get('name');
-			$this->type = Input::get('type');
-			$this->content = Input::get('content');
-			$this->layoutgroup_id = DB::table('layoutgroups')->where_null('module_id')->first()->id;
-			$this->save();
+			$validator = new Validator(Input::get($language->language_key), $this->rules);
+			if( ! $validator->valid())
+			{
+				$errors[$language->language_key] = $validator->errors;
+			}
 		}
 
-		return $validator->errors;
+		if (empty($errors))
+		{
+			$this->online = Input::get('online');
+			$this->hidden = Input::get('hidden');
+			$this->homepage = Input::get('homepage');
+
+			if($this->homepage)
+			{
+				DB::table('pages')->update(array('homepage' => false));
+			}
+
+			$this->save();
+
+			foreach ($languages as $language) {
+				$page_lang = array_merge(array('language_id' => $language->id, 'page_id' => $this->id, 'created_at' => 'NOW()', 'updated_at' => 'NOW()', 'active' => true), array_intersect_key(Input::get($language->language_key), array_flip(array('meta_title', 'meta_description', 'meta_keywords', 'menu', 'url', 'title', 'content'))));
+				DB::table('page_lang')->insert($page_lang);
+			}
+		}
+
+		return $errors;
 	}
 
 	public function validate_and_update()
@@ -44,6 +72,13 @@ class Page extends Model {
 		}
 
 		return $validator->errors;
+	}
+
+	public function delete($id = null)
+	{
+		DB::table('page_lang')->where_page_id($this->id)->delete();
+
+		parent::delete($id);
 	}
 
 }

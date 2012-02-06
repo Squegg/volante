@@ -9,35 +9,37 @@
 		<h1>Pages</h1>
 	</div>
 	<?php Notification::show() ?>
-	<?php if(count($pages->results) > 0): ?>
+	<?php if(count($pages) > 0): ?>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th><?= HTML::sort_link('admin/pages', 'name', 'Name') ?></th>
-					<th><?= HTML::sort_link('admin/pages', 'url', 'Email') ?></th>
-					<th>&nbsp;</th>
+					<th>Name</th>
+					<th>Online</th>
+					<th>Homepage</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach($pages->results as $page): ?>
+			<?php foreach($pages as $page): ?>
 				<tr>
 					<td>
-						<h2><?= $page->name ?></h2>
+						<?php foreach ($page->lang as $lang): ?>
+							<b><?= $lang->title ?></b><br>
+						<?php endforeach ?>
 					</td>
 					<td>
-						<?= $page->email ?>
+						<?= $page->online ?>
+					</td>
+					<td>
+						<?= $page->homepage ?>
 					</td>
 					<td width="120" class="last">
 						<?= HTML::link('admin/pages/edit/'.$page->id, '<i class="icon-pencil"></i>', array('class' => 'btn')) ?>
-						<?php echo Authority::can('delete', 'Page', $page) ? '&nbsp; '.HTML::link('admin/pages/delete/'.$page->id, '<i class="icon-white icon-trash"></i> Delete', array('class' => 'btn btn-danger')) : ''; ?>
+						<?php echo Authority::can('delete', 'Page', $page) ? '&nbsp; '.HTML::link('admin/pages/delete/'.$page->id, '<i class="icon-white icon-trash"></i>', array('class' => 'btn btn-danger')) : ''; ?>
 					</td>
 				</tr>
 			<?php endforeach ?>
 			</tbody>
 		</table>
-		<div class="pull-left">
-			<?= $pages->links() ?>
-		</div>
 	<?php else: ?>
 		<div class="well">
 			No pages found...
