@@ -1,10 +1,16 @@
-# Lara
+# VolanteCMS
 
-The simple Laravel CMS
+The simple yet advanced Laravel CMS
 
 Feel free to fork & help!
 
-More info is coming soon!
+Clone the source.
+
+Run the following commands:
+
+`php artisan migrate:install`
+
+`php artisan migrate`
 
 ## Laravel - A PHP Framework For Web Artisans
 
