@@ -10,7 +10,7 @@ class URL extends \Laravel\URL {
 		{
 			Session::flash('ajax', true);
 		}
-		return parent::to($url, $https).(Session::has('ajax') ? '?ajax=1' : '');
+		return parent::to($url, $https).(Session::has('ajax') ? (stripos($url, '?') ? '&' : '?').'ajax=1' : '');
 	}
 
 }

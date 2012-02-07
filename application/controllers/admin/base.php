@@ -7,6 +7,10 @@ class Admin_Base_Controller extends Base_Controller {
 	public function __construct()
 	{
 		$this->filter('before', 'auth|is_admin');
+		if( ! Session::has('language_id'))
+		{
+			Session::put('language_id', 1);
+		}
 	}
 
 	public function layout($title = '')

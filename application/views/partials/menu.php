@@ -9,12 +9,13 @@
 
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<b>English</b> / Change language &nbsp;
+					<b><?= Language::where_id(Session::get('language_id'))->first()->name ?></b> / Change language &nbsp;
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu pull-right">
-					<li><?= HTML::link('set_language/en?redirect='.URI::current(), 'English') ?></li>
-					<li><?= HTML::link('set_language/nl?redirect='.URI::current(), 'Nederlands') ?></li>
+					<?php foreach(Language::all() as $language): ?>
+						<li><?= HTML::link('set_language/'.$language->id.'?redirect='.URI::current(), $language->name) ?></li>
+					<?php endforeach ?>
 				</ul>
 			</div>
 		</div>

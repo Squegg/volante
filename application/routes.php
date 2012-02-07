@@ -26,6 +26,12 @@ Filter::register('can', function($action, $resource) {
 // Routes
 Router::register('GET /', 'frontend.home@index');
 Router::register('GET /home/(:any?)', 'frontend.home@index');
+
+Router::register('GET /set_language/(:any)', function($id) {
+	Session::put('language_id', $id);
+	return Redirect::to(Input::get('redirect'));
+});
+
 Router::register('* /account/(:any?)', 'frontend.account@(:1)');
 
 Router::register('* /admin', 'admin.dashboard@index');
