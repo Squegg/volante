@@ -14,7 +14,7 @@
 		<?php endforeach ?>
 		</ul>
 	    <div class="tab-content">
-	    	<?php $i = 0; foreach($languages as $language): $i++; $old = Input::old($language->language_key); var_dump($errors); die; ?>
+	    	<?php $i = 0; foreach($languages as $language): $i++; $old = Input::old($language->language_key); ?>
 		    <div class="tab-pane<?= $i == 1 ? ' active':''; ?>" id="<?= $language->language_key ?>">
 			    <fieldset>
 			    	<legend>Meta</legend>

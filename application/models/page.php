@@ -6,7 +6,9 @@ class Page extends Model {
 	public static $sequence = 'pages_id_seq';
 
 	public $rules = array(
-		'title' => 'required'
+		'title' => 'required',
+		'menu' => 'required',
+		'url' => 'required'
 	);
 
 	public function children()
@@ -16,7 +18,9 @@ class Page extends Model {
 
 	public function lang()
 	{
-		return $this->has_many('PageLang');
+		return $this->has_many('PageLang', null, function($query) {
+			return $query->where_language_id(Session::get('language_id'));
+		});
 	}
 
 	public function regions()

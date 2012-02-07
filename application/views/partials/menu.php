@@ -13,8 +13,8 @@
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu pull-right">
-					<li><a href="#">English</a></li>
-					<li><a href="#">Nederlands</a></li>
+					<li><?= HTML::link('set_language/en?redirect='.URI::current(), 'English') ?></li>
+					<li><?= HTML::link('set_language/nl?redirect='.URI::current(), 'Nederlands') ?></li>
 				</ul>
 			</div>
 		</div>

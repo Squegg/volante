@@ -1,29 +1,9 @@
 <?php
-class Admin_Pages_Controller extends Controller {
+class Admin_Pages_Controller extends Admin_Base_Controller {
 
-	public $restful = true;
-	public $layout = true;
-
-	public function __construct()
+	public function layout($title = '')
 	{
-		$this->filter('before', 'auth|is_admin');
-	}
-
-	public function layout()
-	{
-		$menu_data = array(
-			'menu' => Config::get('menus.admin')
-		);
-
-		$header_data = array(
-			'title' => 'Admin | Pages'
-		);
-
-		$this->layout = View::make('layouts.default')
-							->with('header_data', $header_data)
-							->with('menu_data', $menu_data);
-
-		return $this->layout;
+		return parent::layout('Pages');
 	}
 
 	public function get_index()
@@ -46,8 +26,20 @@ class Admin_Pages_Controller extends Controller {
 			return Redirect::to('admin/pages/index');
 		}
 
+		if( ! Session::has('errors'))
+		{
+			$errors = array();
+			foreach (Language::all() as $language) {
+				$errors[$language->language_key] = new Laravel\Messages;
+			}
+		}
+		else {
+			$errors = Session::get('errors');
+		}
+
 		$this->layout->content = View::make('admin.pages.add')
-									 ->with('languages', Language::all());
+									 ->with('languages', Language::all())
+									 ->with('errors', $errors);
 	}
 
 	public function post_add()

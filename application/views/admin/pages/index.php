@@ -19,12 +19,10 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach($pages as $page): ?>
+			<?php foreach($pages as $page): $lang = reset($page->lang); ?>
 				<tr>
 					<td>
-						<?php foreach ($page->lang as $lang): ?>
-							<b><?= $lang->title ?></b><br>
-						<?php endforeach ?>
+						<h1><?= $lang->menu ?></h1><br>
 					</td>
 					<td>
 						<?= $page->online ?>

@@ -57,3 +57,13 @@ View::composer('layouts.default', function($view)
 
 	$view->footer = View::make('partials.footer');
 });
+
+View::composer('layouts.ajax', function($view)
+{
+	Asset::container('header')->add('jquery', 'js/jquery.min.js');
+	Asset::container('header')->add('bootstrap', 'bootstrap/bootstrap/css/bootstrap.min.css');
+	Asset::container('footer')->add('bootstrap', 'bootstrap/bootstrap/js/bootstrap.js', 'jquery');
+	Asset::container('header')->add('main', 'css/main.css');
+
+	$view->footer = View::make('partials.footer');
+});

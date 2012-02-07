@@ -37,4 +37,6 @@ Autoloader::psr(array(
 */
 
 Autoloader::map(array(
+	'Base_Controller' => path('app').'controllers/base.php',
+	'Admin_Base_Controller' => path('app').'controllers/admin/base.php'
 ));

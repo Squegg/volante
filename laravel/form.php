@@ -86,7 +86,7 @@ class Form {
 	{
 		$uri = (is_null($action)) ? URI::current() : $action;
 
-		return HTML::entities(URL::to($uri, $https));
+		return HTML::entities(\CMS\URL::to($uri, $https));
 	}
 
 	/**
@@ -305,7 +305,7 @@ class Form {
 	{
 		return static::input('number', $name, $value, $attributes);
 	}
-	
+
 	/**
 	 * Create a HTML date input element.
 	 *
@@ -313,7 +313,7 @@ class Form {
 	 * @param  string  $value
 	 * @param  array   $attributes
 	 * @return string
-	 */		
+	 */
 	public static function date($name, $value = null, $attributes = array())
 	{
 		return static::input('date', $name, $value, $attributes);
