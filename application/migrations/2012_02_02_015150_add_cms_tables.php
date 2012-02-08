@@ -26,7 +26,7 @@ class Add_Cms_Tables {
 			$table->increments('id');
 			$table->integer('page_id');
 			$table->integer('language_id');
-			$table->string('url');
+			$table->string('uri');
 			$table->boolean('active');
 			$table->string('meta_title');
 			$table->string('meta_keywords');
