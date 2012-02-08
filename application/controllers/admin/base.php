@@ -1,7 +1,6 @@
 <?php
 class Admin_Base_Controller extends Base_Controller {
 
-	public $restful = true;
 	public $layout = true;
 
 	public function __construct()
@@ -32,12 +31,6 @@ class Admin_Base_Controller extends Base_Controller {
 							->with('menu_data', $menu_data);
 
 		return $this->layout;
-	}
-
-	public function get_set_language($id = 0)
-	{
-		Session::put('language_id', $id);
-		Redirect::to(implode('/', array_slice(explode('/', URI::current()), 0, -2)));
 	}
 
 }

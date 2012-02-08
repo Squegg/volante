@@ -22,7 +22,7 @@
 			<?php foreach($pages as $page): $lang = reset($page->lang); ?>
 				<tr>
 					<td>
-						<h1><?= $lang->menu ?></h1><br>
+						<h1><?= $lang->menu ?></h1>
 					</td>
 					<td>
 						<?= $page->online ?>

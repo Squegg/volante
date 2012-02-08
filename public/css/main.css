@@ -46,14 +46,6 @@ h1, h2 {
 	text-decoration: none;
 }
 
-.navbar .dropdown-menu:before {
-	left: inherit;
-	right: 5px; }
-
-.navbar .dropdown-menu:after {
-	left: inherit;
-	right: 6px; }
-
 .dropdown-menu {
 	top: 109%;
 	right: 0;

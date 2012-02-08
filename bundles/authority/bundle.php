@@ -1,6 +1,1 @@
-<?php
-return array(
-	'bundle' => 'authority',
-	'name' => 'authority',
-	'auto' => true
-);
+<?php return array('name' => 'authority');

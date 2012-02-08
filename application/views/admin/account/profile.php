@@ -2,6 +2,7 @@
 	<div class="page-header">
 		<h1>Profile</h1>
 	</div>
+	<?php Notification::show() ?>
 	<table class="table table-striped table-condensed">
 		<tbody>
 			<tr>

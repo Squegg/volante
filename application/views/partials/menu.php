@@ -7,17 +7,19 @@
 
 			<?= HTML::menu($menu) ?>
 
+			<?php if(Auth::user()): ?>
 			<div class="btn-group pull-right">
+				<?= HTML::link('admin/account/profile', '<b>'.Auth::user()->name.'</b>', array('class' => 'btn')) ?>
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<b><?= Language::where_id(Session::get('language_id'))->first()->name ?></b> / Change language &nbsp;
-				<span class="caret"></span>
+					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu pull-right">
-					<?php foreach(Language::all() as $language): ?>
-						<li><?= HTML::link('set_language/'.$language->id.'?redirect='.URI::current(), $language->name) ?></li>
-					<?php endforeach ?>
+					<li><?= HTML::link('admin/account/edit', '<i class="icon-pencil"></i> Edit profile') ?></li>
+					<li class="divider"></li>
+					<li><?= HTML::link('admin/account/logout', '<i class="icon-arrow-right"></i> Logout') ?></li>
 				</ul>
 			</div>
+			<?php endif ?>
 		</div>
 	</div>
 </div>
