@@ -25,7 +25,7 @@ class HTML extends \Laravel\HTML {
 							<ul class="dropdown-menu">';
 				foreach ($item['children'] as $sub_uri => $sub_item)
 				{
-					$html .= '<li><a href="/'.$sub_uri.'">'.$sub_item['name'].'</a></li>';
+					$html .= '<li><a href="'.URL::base().'/'.$sub_uri.'">'.$sub_item['name'].'</a></li>';
 				}
 				$html .= '
 							</ul>
