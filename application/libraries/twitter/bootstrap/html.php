@@ -21,11 +21,11 @@ class HTML extends \Laravel\HTML {
 				$html .= '
 					<ul class="nav secondary-nav">
 						<li class="dropdown">
-							<a class="dropdown-toggle" href="'.URL::base().'/'.$uri.'">'.$item['name'].'</a>
+							<a class="dropdown-toggle" href="'.URL::base().$uri.'">'.$item['name'].'</a>
 							<ul class="dropdown-menu">';
 				foreach ($item['children'] as $sub_uri => $sub_item)
 				{
-					$html .= '<li><a href="'.URL::base().'/'.$sub_uri.'">'.$sub_item['name'].'</a></li>';
+					$html .= '<li><a href="'.URL::base().$sub_uri.'">'.$sub_item['name'].'</a></li>';
 				}
 				$html .= '
 							</ul>
@@ -34,7 +34,7 @@ class HTML extends \Laravel\HTML {
 			}
 			else
 			{
-				$html .= '<li><a href="'.URL::base().'/'.$uri.'">'.$item['name'].'</a></li>';
+				$html .= '<li><a href="'.URL::base().$uri.'">'.$item['name'].'</a></li>';
 			}
 		}
 
