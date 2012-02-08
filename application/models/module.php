@@ -12,7 +12,7 @@ class Module extends Model {
 	 *
 	 * @var string
 	 */
-	public static $api = 'http://modules.tubesworld.com/api/modules/';
+	public static $api = 'http://84.30.117.40/modules/api/modules/';
 
 	public static function remote($module_key = '')
 	{
