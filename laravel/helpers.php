@@ -352,6 +352,18 @@ function str_contains($haystack, $needle)
 }
 
 /**
+ * Cap a string with a single instance of the given string.
+ *
+ * @param  string  $value
+ * @param  string  $cap
+ * @return string
+ */
+function str_finish($value, $cap)
+{
+	return rtrim($value, $cap).$cap;
+}
+
+/**
  * Return the value of the given item.
  *
  * If the given item is a Closure the result of the Closure will be returned.
@@ -373,4 +385,15 @@ function value($value)
 function with($object)
 {
 	return $object;
+}
+
+/**
+ * Determine if the current version of PHP is at least the supplied version.
+ *
+ * @param  string  $version
+ * @return bool
+ */
+function has_php($version)
+{
+	return version_compare(PHP_VERSION, $version) >= 0;
 }
