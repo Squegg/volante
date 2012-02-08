@@ -36,7 +36,7 @@ return array(
 		if($user::has_any_role('store_owner', 'manufacturer', 'reseller'))
 		{
 			// Store_owners, Manufacturers and Resellers can "manage" their user
-			Authority::allow('moderate', 'User', function ($that_user) use ($user)
+			Authority::allow('moderate', 'Account', function ($that_user) use ($user)
 			{
 				return $that_user->id == $user->id;
 			});
@@ -45,7 +45,7 @@ return array(
 		if($user::has_role('superadmin'))
 		{
 			Authority::allow('manage', 'all');
-			Authority::deny('delete', 'User', function ($that_user) use ($user)
+			Authority::deny('delete', 'Account', function ($that_user) use ($user)
 			{
 				return $that_user->id == $user->id;
 			});
