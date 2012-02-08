@@ -6,7 +6,6 @@ class Admin_Base_Controller extends Base_Controller {
 
 	public function __construct()
 	{
-
 		if( ! starts_with(URI::current(), 'admin/account'))
 		{
 			$this->filter('before', 'auth|is_admin');

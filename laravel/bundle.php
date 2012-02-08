@@ -82,7 +82,7 @@ class Bundle {
 					$info['location'] = dirname($path).DS;
 
 					$bundles[$info['name']] = $info;
-
+					if($info['auto']) { Bundle::start($info['name']); }
 					continue;
 				}
 				// If a bundle.info file doesn't exist within a directory,
