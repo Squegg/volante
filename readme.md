@@ -4,13 +4,30 @@ The simple yet advanced Laravel CMS
 
 Feel free to fork & help!
 
+
+## Installation
+
 Clone the source.
+
+Configure your database and session driver + key manually in application/config/database.php|session.php|application.php
 
 Run the following commands:
 
 `php artisan migrate:install`
 
 `php artisan migrate`
+
+Visit the website and add /admin to it. (http://localhost/volante/admin)
+
+
+### Login
+
+email: `admin@admin.com`
+
+password: `admin`
+
+
+### Check the demo at
 
 `http://84.30.117.40/volante/`
 
