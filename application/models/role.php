@@ -1,9 +1,12 @@
 <?php
 class Role extends Model {
 
-	public function role_lang()
+	public function lang()
 	{
-		return $this->has_many('Role_lang');
+		return $this->has_many('RoleLang', null, function($query)
+		{
+			return $query->where_language_id(Session::get('language_id'));
+		});
 	}
 
 	public function accounts()

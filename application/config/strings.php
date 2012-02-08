@@ -25,6 +25,7 @@ return array(
 
 		'account' => 'accounts',
 		'role' => 'roles',
+		'rolelang' => 'role_lang',
 		'page' => 'pages',
 		'region' => 'regions',
 		'dbasset' => 'assets',
@@ -33,7 +34,8 @@ return array(
 		'layout' => 'layouts',
 		'layoutgroup' => 'layoutgroups',
 		'setting' => 'settings',
-		'pagelang' => 'page_lang'
+		'pagelang' => 'page_lang',
+
 	),
 
 	/*

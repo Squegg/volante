@@ -16,11 +16,11 @@ Filter::register('csrf', function()
 
 Filter::register('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('account/login');
+	if (Auth::guest()) return Redirect::to('admin/account/login');
 });
 
 Filter::register('can', function($action, $resource) {
-	if ( ! Authority::can($action, $resource)) return Redirect::to('home');
+	if ( ! Authority::can($action, $resource)) return Redirect::to('/');
 });
 
 // Routes
@@ -32,10 +32,11 @@ Router::register('GET /set_language/(:any)', function($id) {
 	return Redirect::to(Input::get('redirect'));
 });
 
-Router::register('* /account/(:any?)', 'frontend.account@(:1)');
-
 Router::register('* /admin', 'admin.dashboard@index');
 Router::register('* /admin/dashboard', 'admin.dashboard@index');
+
+Router::register('* /admin/account/(:any?)', 'admin.account@(:1)');
+Router::register('* /admin/account/(:any)/(:any?)', 'admin.account@(:1)');
 
 Router::register('* /admin/accounts/(:any?)', 'admin.accounts@(:1)');
 Router::register('* /admin/accounts/(:any)/(:any?)', 'admin.accounts@(:1)');

@@ -6,7 +6,12 @@ class Admin_Base_Controller extends Base_Controller {
 
 	public function __construct()
 	{
-		$this->filter('before', 'auth|is_admin');
+
+		if( ! starts_with(URI::current(), 'admin/account'))
+		{
+			$this->filter('before', 'auth|is_admin');
+		}
+
 		if( ! Session::has('language_id'))
 		{
 			Session::put('language_id', 1);
@@ -16,7 +21,7 @@ class Admin_Base_Controller extends Base_Controller {
 	public function layout($title = '')
 	{
 		$menu_data = array(
-			'menu' => Config::get('menus.admin')
+			'menu' => starts_with(URI::current(), 'admin/account/login') ? array() : Config::get('menus.admin')
 		);
 
 		$header_data = array(
