@@ -25,7 +25,7 @@ function __($key, $replacements = array(), $language = null)
 {
 	if(is_null($language))
 	{
-		$language = Language::where_id(Auth::user()->language_id)->first()->language_key;
+		$language = Laravel\Session::get('language_key');
 	}
 
 	return Laravel\Lang::line($key, $replacements, $language)->get($language);

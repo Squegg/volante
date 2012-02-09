@@ -29,7 +29,7 @@ password: `admin`
 
 ### Check the demo at
 
-`http://84.30.117.40/volante/`
+`http://84.30.117.40/volante/admin`
 
 
 ## Laravel - A PHP Framework For Web Artisans

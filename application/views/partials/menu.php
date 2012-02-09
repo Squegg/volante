@@ -14,9 +14,9 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu pull-right">
-					<li><?= HTML::link('admin/account/edit', '<i class="icon-pencil"></i> Edit profile') ?></li>
+					<li><?= HTML::link('admin/account/edit', '<i class="icon-pencil"></i> '.__('admin.account.edit')) ?></li>
 					<li class="divider"></li>
-					<li><?= HTML::link('admin/account/logout', '<i class="icon-arrow-right"></i> Logout') ?></li>
+					<li><?= HTML::link('admin/account/logout', '<i class="icon-arrow-right"></i> '.__('admin.account.logout')) ?></li>
 				</ul>
 			</div>
 			<?php endif ?>

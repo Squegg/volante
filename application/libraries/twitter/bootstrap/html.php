@@ -9,6 +9,9 @@
  */
 use URL;
 use Input;
+use Asset;
+use View;
+
 class HTML extends \Laravel\HTML {
 
 	public static function menu($list, $attributes = array())
@@ -51,6 +54,13 @@ class HTML extends \Laravel\HTML {
 	public static function sort_link($url, $sort_by, $name)
 	{
 		return HTML::link($url.'?'.http_build_query(array_merge(Input::all(), array('sort_by' => $sort_by, 'order' => (Input::get('sort_by') == $sort_by ? (Input::get('order') == 'ASC' ? 'DESC' : 'ASC') : 'ASC')))), $name);
+	}
+
+	public static function language_selector()
+	{
+		Asset::container('footer')->add('language_selector', 'js/admin/language-selector.js');
+
+		return View::make('partials/language_selector')->render();
 	}
 
 }

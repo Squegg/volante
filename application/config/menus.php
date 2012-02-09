@@ -2,47 +2,22 @@
 return array(
 	'admin' => array(
 		'admin/dashboard' => array(
-			'name' => 'Dashboard'
+			'name' => __('admin.menu.dashboard')
 		),
 		'admin/pages' => array(
-			'name' => 'Pages'
+			'name' => __('admin.menu.pages')
 		),
 		'admin/layouts' => array(
-			'name' => 'Layouts',
+			'name' => __('admin.menu.layouts')
 		),
 		'admin/accounts' => array(
-			'name' => 'Accounts',
+			'name' => __('admin.menu.accounts')
 		),
 		'admin/modules' => array(
-			'name' => 'Modules',
+			'name' => __('admin.menu.modules')
 		),
 		'admin/settings' => array(
-			'name' => 'Settings',
-		)
-	),
-	'frontend' => array(
-		'home' => array(
-			'name' => 'Home'
-		)
-	),
-	'logged_in' => array(
-		'frontend' => array(
-			'account/profile' => array(
-				'name' => 'Profile'
-			),
-			'account/logout' => array(
-				'name' => 'Logout'
-			)
-		),
-	),
-	'logged_out' => array(
-		'frontend' => array(
-			'signup' => array(
-				'name' => '<b>Sign up</b>'
-			),
-			'account/login' => array(
-				'name' => '<b>Login</b>'
-			)
+			'name' => __('admin.menu.settings')
 		)
 	)
 );

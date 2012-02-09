@@ -10,9 +10,25 @@ class Admin_Base_Controller extends Base_Controller {
 			$this->filter('before', 'auth|is_admin');
 		}
 
-		if( ! Session::has('language_id'))
+		if( ! Session::has('language_id') || ! Session::has('language_key'))
 		{
-			Session::put('language_id', 1);
+			Session::put('language_id', Auth::user()->language_id);
+			Session::put('language_key', Language::where_id(Auth::user()->language_id)->first()->language_key);
+		}
+
+		if( ! Session::has('admin.settings'))
+		{
+			Session::put('admin.settings', Setting::first()->attributes);
+		}
+
+		if( ! Session::has('admin.languages'))
+		{
+			$languages = array();
+			foreach(Language::all() as $language)
+			{
+				$languages[$language->id] = $language->name;
+			}
+			Session::put('admin.languages', $languages);
 		}
 	}
 

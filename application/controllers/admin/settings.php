@@ -13,15 +13,22 @@ class Admin_Settings_Controller extends Admin_Base_Controller {
 			return Redirect::to('admin');
 		}
 
-		$settings = Setting::all();
+		$settings = Setting::first();
+
+		$languages = array();
+		foreach(Language::all() as $language)
+		{
+			$languages[$language->id] = $language->name;
+		}
 
 		$this->layout->content = View::make('admin.settings.index')
-									 ->with('settings', $settings);
+									 ->with('settings', $settings)
+									 ->with('languages', $languages);
 	}
 
-	public function put_edit()
+	public function put_index()
 	{
-		$settings = Setting::all();
+		$settings = Setting::first();
 
 		$errors = $settings->validate_and_update();
 		if(count($errors->all()) > 0)
@@ -31,7 +38,7 @@ class Admin_Settings_Controller extends Admin_Base_Controller {
 				   ->with_input();
 		}
 
-		Notification::success('Successfully updated settings');
+		Notification::success(__('admin_settings.index.success'));
 
 		return Redirect::to('admin/settings');
 	}

@@ -13,8 +13,7 @@ class Add_Settings_Table {
 		{
 			$table->create();
 			$table->increments('id');
-			$table->string('setting_key');
-			$table->string('setting_value');
+			$table->integer('default_language_id');
 		});
 	}
 

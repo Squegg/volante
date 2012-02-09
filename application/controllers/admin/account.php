@@ -46,7 +46,7 @@ class Admin_Account_Controller extends Admin_Base_Controller {
 
 		if( ! $account OR Authority::cannot('update', 'Account', $account))
 		{
-			return Redirect::to('admin/accounts/index');
+			return Redirect::to('admin/accounts');
 		}
 
 		$languages = array();
@@ -76,7 +76,7 @@ class Admin_Account_Controller extends Admin_Base_Controller {
 				   ->with_input('except', array('password'));
 		}
 
-		Notification::success('Successfully updated profile');
+		Notification::success(__('admin_account.edit.success'));
 
 		return Redirect::to('admin/account/profile');
 	}
@@ -85,7 +85,7 @@ class Admin_Account_Controller extends Admin_Base_Controller {
 	{
 		Auth::logout();
 
-		Notification::success('Successfully logged out!');
+		Notification::success(__('admin_account.logout.success'));
 
 		return Redirect::to('admin/account/login');
 	}
