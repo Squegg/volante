@@ -16,15 +16,15 @@
 			<?php endforeach ?>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					Add / Remove Languages
+					Add Language
 					<b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="#">Remove English <i class="icon-remove"></i></a>
+						<a href="#"><i class="icon-plus"></i> &nbsp;English</a>
 					</li>
 					<li>
-						<a href="#">Add Spanish <i class="icon-plus"></i></a>
+						<a href="#"><i class="icon-plus"></i> &nbsp;Spanish</a>
 					</li>
 				</ul>
 			</li>

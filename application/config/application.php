@@ -124,7 +124,8 @@ return array(
 	'bundle' => array(
 		'cache' => 0,
 		'auto'  => array(
-			'authority'
+			'authority',
+			'bug-lost'
 		),
 	),
 
