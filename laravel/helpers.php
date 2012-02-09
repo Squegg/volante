@@ -23,7 +23,12 @@ function e($value)
  */
 function __($key, $replacements = array(), $language = null)
 {
-	return Laravel\Lang::line($key, $replacements, $language);
+	if(is_null($language))
+	{
+		$language = Language::where_id(Auth::user()->language_id)->first()->language_key;
+	}
+
+	return Laravel\Lang::line($key, $replacements, $language)->get($language);
 }
 
 /**

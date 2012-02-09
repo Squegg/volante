@@ -23,7 +23,7 @@ class Authority extends Authority\Ability {
 
 	protected static function current_user()
 	{
-		return \Auth::user() ?: new User;
+		return \Auth::user() ?: new Account;
 	}
 
 }

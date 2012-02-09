@@ -8,6 +8,7 @@ class Account extends Model {
 	public $rules = array(
 		'email' => 'required|email',
 		'name' => 'required',
+		'language_id' => 'required'
 	);
 
 	public function roles()
@@ -88,27 +89,23 @@ class Account extends Model {
 		$validator = new Validator(Input::all(), $this->rules);
 		if ($validator->valid())
 		{
-			$roles = DB::query("SELECT roles.id, EXISTS(SELECT 1 FROM accounts_roles WHERE role_id = roles.id AND account_id = ?) AS active FROM roles", array($this->id));
-			foreach($roles as $role)
-			{
-				if(Input::has('role_ids') && $role->active && ! in_array($role->id, Input::get('role_ids')))
-				{
-					DB::table('accounts_roles')
-						->where('role_id', '=', $role->id)
-						->where('account_id', '=', $this->id)
-						->delete();
-				}
+            if(Input::has('role_ids'))
+            {
+   	            DB::table('accounts_roles')->where_account_id($this->id)->delete();
 
-				if(Input::has('role_ids') && ! $role->active && in_array($role->id, Input::get('role_ids')))
-				{
-					DB::table('accounts_roles')
-						->insert(array('account_id' => $this->id, 'role_id' => $role->id));
-				}
-			}
+                foreach (Input::get('role_ids') as $role_id) {
+                    if($role_id == 0) continue;
+
+                    DB::table('accounts_roles')
+                        ->insert(array('account_id' => $this->id, 'role_id' => $role_id));
+                }
+            }
 
 			$this->email = Input::get('email');
 			if($password = Input::get('password')) $this->password = Hash::make($password);
 			$this->name = Input::get('name');
+			$this->language_id = Input::get('language_id');
+
 			$this->save();
 		}
 

@@ -13,6 +13,10 @@
 				<th>E-mail address</th>
 				<td><?= Auth::user()->email ?></td>
 			</tr>
+			<tr>
+				<th>Language</th>
+				<td><?= $language ?></td>
+			</tr>
 		</tbody>
 	</table>
 </div>

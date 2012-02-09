@@ -33,7 +33,11 @@ class Admin_Account_Controller extends Admin_Base_Controller {
 
 	public function get_profile()
 	{
-		$this->layout->content = View::make('admin.account.profile');
+		$language = Language::where_id(Auth::user()->language_id)
+							   ->first()->name;
+
+		$this->layout->content = View::make('admin.account.profile')
+									 ->with('language', $language);
 	}
 
 	public function get_edit()
@@ -45,8 +49,15 @@ class Admin_Account_Controller extends Admin_Base_Controller {
 			return Redirect::to('admin/accounts/index');
 		}
 
+		$languages = array();
+		foreach(Language::all() as $language)
+		{
+			$languages[$language->id] = $language->name;
+		}
+
 		$this->layout->content = View::make('admin.account.edit')
-									 ->with('account', $account);
+									 ->with('account', $account)
+									 ->with('languages', $languages);
 	}
 
 	public function put_edit($id = 0)

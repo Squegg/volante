@@ -42,6 +42,12 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 			return Redirect::to('admin/accounts/index');
 		}
 
+		$languages = array();
+		foreach(Language::all() as $language)
+		{
+			$languages[$language->id] = $language->name;
+		}
+
 		$roles_lang = array();
 		foreach(DB::table('role_lang')->get() as $role_lang)
 		{
@@ -56,7 +62,8 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 
 		$this->layout->content = View::make('admin.accounts.add')
 									 ->with('roles', $roles)
-									 ->with('roles_lang', $roles_lang);
+									 ->with('roles_lang', $roles_lang)
+									 ->with('languages', $languages);
 	}
 
 	public function post_add()
@@ -71,7 +78,7 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 				   ->with_input('except', array('password'));
 		}
 
-		Notification::success('Successfully created account');
+		Notification::success(__('admin_accounts.add.success'));
 
 		return Redirect::to('admin/accounts/index');
 	}
@@ -83,6 +90,12 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 		if( ! $account OR $id == 0 OR Authority::cannot('update', 'Account', $account))
 		{
 			return Redirect::to('admin/accounts/index');
+		}
+
+		$languages = array();
+		foreach(Language::all() as $language)
+		{
+			$languages[$language->id] = $language->name;
 		}
 
 		$roles_lang = array();
@@ -106,7 +119,8 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 		$this->layout->content = View::make('admin.accounts.edit')
 									 ->with('account', $account)
 									 ->with('roles', $roles)
-									 ->with('active_roles', $active_roles);
+									 ->with('active_roles', $active_roles)
+									 ->with('languages', $languages);
 	}
 
 	public function put_edit($id = 0)
@@ -125,7 +139,7 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 				   ->with_input('except', array('password'));
 		}
 
-		Notification::success('Successfully updated account');
+		Notification::success(__('admin_accounts.edit.success'));
 
 		return Redirect::to('admin/accounts/index');
 	}
@@ -153,7 +167,7 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 
 		$account->delete();
 
-		Notification::success('Successfully removed account');
+		Notification::success(__('admin_accounts.delete.success'));
 
 		return Redirect::to('admin/accounts/index');
 	}
