@@ -2,7 +2,7 @@
 	'menu' => array(
 		'dashboard' => 'Dashboard',
 		'pages' => 'Pagina\'s',
-		'layouts' => 'Layouts',
+		'layouts' => 'Sjablonen',
 		'accounts' => 'Accounts',
 		'modules' => 'Modules',
 		'settings' => 'Instellingen'

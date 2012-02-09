@@ -106,6 +106,12 @@ class Account extends Model {
 			$this->name = Input::get('name');
 			$this->language_id = Input::get('language_id');
 
+            if($this->id == Auth::user()->id)
+            {
+				Session::put('language_id', $this->language_id);
+				Session::put('language_key', Language::where_id($this->language_id)->first()->language_key);
+            }
+
 			$this->save();
 		}
 

@@ -6,7 +6,7 @@
 				<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i></button>
 			<?= Form::close() ?>
 		</div>
-		<h1>Layouts</h1>
+		<h1><?= __('admin_layouts.index.title') ?></h1>
 	</div>
 	<?php Notification::show() ?>
 	<?php if(count($layoutgroups) > 0): ?>
@@ -15,8 +15,8 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th width="400">Name</th>
-					<th>Type</th>
+					<th width="400"><?= __('admin_layouts.index.table.name') ?></th>
+					<th><?= __('admin_layouts.index.table.type') ?></th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -40,11 +40,12 @@
 		<?php endif; endforeach ?>
 	<?php else: ?>
 		<div class="well">
+			<?= __('admin_layouts.index.no_results') ?>
 			Er zijn geen layouts gevonden...
 		</div>
 	<?php endif ?>
 	<div class="pull-right">
-		<?= HTML::link('admin/layouts/add', 'Add layout', array('class' => 'btn btn-large btn-primary')) ?>
+		<?= HTML::link('admin/layouts/add', __('admin_layouts.index.add'), array('class' => 'btn btn-large btn-primary')) ?>
 	</div>
 	<div class="clear"></div>
 </div>

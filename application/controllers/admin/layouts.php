@@ -34,7 +34,7 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 	{
 		if(Authority::cannot('create', 'Layout'))
 		{
-			return Redirect::to('admin/layouts/index');
+			return Redirect::to('admin/layouts');
 		}
 
 		$roles_lang = array();
@@ -65,7 +65,7 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 				   ->with_input('except', array('password'));
 		}
 
-		Notification::success('Successfully created layout');
+		Notification::success(__('admin_layouts.add.success'));
 
 		return Redirect::to('admin/layouts/index');
 	}
@@ -88,7 +88,7 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 		$layout = Layout::find($id);
 		if( ! $layout OR $id == 0)
 		{
-			return Redirect::to('admin/layouts/index');
+			return Redirect::to('admin/layouts');
 		}
 
 		$errors = $layout->validate_and_update();
@@ -99,9 +99,9 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 				   ->with_input('except', array('password'));
 		}
 
-		Notification::success('Successfully updated layout');
+		Notification::success(__('admin_layouts.edit.success'));
 
-		return Redirect::to('admin/layouts/index');
+		return Redirect::to('admin/layouts');
 	}
 
 	public function get_delete($id = 0)
@@ -110,7 +110,7 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 
 		if( ! $layout OR $id == 0 OR Authority::cannot('delete', 'Layout', $layout))
 		{
-			return Redirect::to('admin/layouts/index');
+			return Redirect::to('admin/layouts');
 		}
 
 		$this->layout->content = View::make('admin.layouts.delete')
@@ -122,13 +122,13 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 		$layout = Layout::find($id);
 		if( ! $layout OR $id == 0 OR Authority::cannot('delete', 'Layout', $layout))
 		{
-			return Redirect::to('admin/layouts/index');
+			return Redirect::to('admin/layouts');
 		}
 
 		$layout->delete();
 
-		Notification::success('Successfully deleted layout');
+		Notification::success(__('admin_layouts.delete.success'));
 
-		return Redirect::to('admin/layouts/index');
+		return Redirect::to('admin/layouts');
 	}
 }
