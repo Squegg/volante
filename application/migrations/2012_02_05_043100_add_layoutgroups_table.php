@@ -25,7 +25,7 @@ class Add_Layoutgroups_Table {
 	 */
 	public function down()
 	{
-		Schema::table('layoutgroups', function($wtable)
+		Schema::table('layoutgroups', function($table)
 		{
 			$table->drop();
 		});
