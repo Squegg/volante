@@ -53,6 +53,11 @@ class Add_Authority_Tables {
 			$table->drop();
 		});
 
+		Schema::table('role_lang', function($table)
+		{
+			$table->drop();
+		});
+
 		Schema::table('accounts_roles', function($table)
 		{
 			$table->drop();
