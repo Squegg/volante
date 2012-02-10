@@ -5,7 +5,7 @@ return array(
 		'success' => 'Successfully saved settings',
 		'form' => array(
 			'default_language' => 'Default page language',
-			'submit' => 'Instellingen opslaan'
+			'submit' => 'Save changes'
 		)
 	)
 );
