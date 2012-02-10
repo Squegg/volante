@@ -6,7 +6,7 @@ class Page extends Model {
 	public static $sequence = 'pages_id_seq';
 
 	public $rules = array(
-		'title' => 'required',
+		'meta_title' => 'required',
 		'menu' => 'required',
 		'url' => 'required'
 	);
@@ -56,7 +56,17 @@ class Page extends Model {
 			$this->save();
 
 			foreach ($languages as $language) {
-				$page_lang = array_merge(array('language_id' => $language->id, 'page_id' => $this->id, 'created_at' => 'NOW()', 'updated_at' => 'NOW()', 'active' => true), array_intersect_key(Input::get($language->language_key), array_flip(array('meta_title', 'meta_description', 'meta_keywords', 'menu', 'url', 'title', 'content'))));
+				var_dump(Input::get($language->language_key));
+				$page_lang = array_merge(
+					array(
+						'language_id' => $language->id,
+						'page_id' => $this->id,
+						'created_at' => 'NOW()',
+						'updated_at' => 'NOW()',
+						'active' => true
+					),
+					array_intersect_key(Input::get($language->language_key), array_flip(array('meta_title', 'meta_description', 'meta_keywords', 'menu', 'url', 'title', 'content')))
+				);
 				DB::table('page_lang')->insert($page_lang);
 			}
 		}

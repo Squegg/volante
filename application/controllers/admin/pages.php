@@ -23,18 +23,12 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 	{
 		if(Authority::cannot('create', 'Page'))
 		{
-			return Redirect::to('admin/pages/index');
+			return Redirect::to('admin/pages');
 		}
 
-		if( ! Session::has('errors'))
-		{
-			$errors = array();
-			foreach (Language::all() as $language) {
-				$errors[$language->language_key] = new Laravel\Messages;
-			}
-		}
-		else {
-			$errors = Session::get('errors');
+		$errors = array();
+		foreach (Language::all() as $language) {
+			$errors[$language->language_key] = Session::has('errors.'.$language->language_key) ? Session::get('errors.'.$language->language_key) : new Laravel\Messages;
 		}
 
 		$this->layout->content = View::make('admin.pages.add')
@@ -54,9 +48,9 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 				   ->with_input();
 		}
 
-		Notification::success('Successfully added page');
+		Notification::success(__('admin_pages.add.success'));
 
-		return Redirect::to('admin/pages/index');
+		return Redirect::to('admin/pages');
 	}
 
 	public function get_edit($id = 0)
@@ -65,7 +59,7 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 
 		if( ! $page OR $id == 0 OR Authority::cannot('update', 'Page', $page))
 		{
-			return Redirect::to('admin/pages/index');
+			return Redirect::to('admin/pages');
 		}
 
 		$this->layout->content = View::make('admin.pages.edit')
@@ -88,9 +82,9 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 				   ->with_input();
 		}
 
-		Notification::success('Successfully updated page');
+		Notification::success(__('admin_pages.edit.success'));
 
-		return Redirect::to('admin/pages/index');
+		return Redirect::to('admin/pages');
 	}
 
 	public function get_delete($id = 0)
@@ -99,7 +93,7 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 
 		if( ! $page OR $id == 0 OR Authority::cannot('delete', 'Page', $page))
 		{
-			return Redirect::to('admin/pages/index');
+			return Redirect::to('admin/pages');
 		}
 
 		$this->layout->content = View::make('admin.pages.delete')
@@ -111,14 +105,14 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 		$page = Page::find($id);
 		if( ! $page OR $id == 0 OR Authority::cannot('delete', 'Page', $page))
 		{
-			return Redirect::to('admin/pages/index');
+			return Redirect::to('admin/pages');
 		}
 
 		$page->delete();
 
-		Notification::success('Successfully removed page');
+		Notification::success(__('admin_pages.delete.success'));
 
-		return Redirect::to('admin/pages/index');
+		return Redirect::to('admin/pages');
 	}
 
 }
