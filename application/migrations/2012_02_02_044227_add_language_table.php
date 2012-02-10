@@ -13,7 +13,7 @@ class Add_Language_Table {
 		{
 			$table->create();
 			$table->increments('id');
-			$table->string('language_key')->unique();
+			$table->string('language_key')->unique('UQ_language_key');
 			$table->string('name');
 		});
 	}
