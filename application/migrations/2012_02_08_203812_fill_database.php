@@ -22,7 +22,7 @@ class Fill_Database {
 		$account = new Account;
 		$account->email = 'admin@admin.com';
 		$account->password = '$2a$08$P/FbYAoXjLhz2hKcoE75L.TIPEU9dKpcyJOz5w82XrD8i1lXz3UUi';
-		$account->name = 'Admin';
+		$account->name = 'Sir. Mayalot';
 		$account->language_id = $english->id;
 		$account->save();
 
