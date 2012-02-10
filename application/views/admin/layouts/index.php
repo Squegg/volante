@@ -41,7 +41,6 @@
 	<?php else: ?>
 		<div class="well">
 			<?= __('admin_layouts.index.no_results') ?>
-			Er zijn geen layouts gevonden...
 		</div>
 	<?php endif ?>
 	<div class="pull-right">
