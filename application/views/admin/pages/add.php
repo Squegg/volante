@@ -7,6 +7,7 @@
 		<?= Form::field('checkbox', 'online', __('admin_pages.add.form.online'), array(Input::old('online'), array('checked' => 'checked'))) ?>
 		<?= Form::field('checkbox', 'hidden', __('admin_pages.add.form.hidden'), array(Input::old('hidden'))) ?>
 		<?= Form::field('checkbox', 'homepage', __('admin_pages.add.form.homepage'), array(Input::old('homepage'))) ?>
+		<?= Form::field('select', 'layout_id', __('admin_pages.add.form.layout'), array($layouts)) ?>
 		<br>
 		<?= HTML::language_selector() ?>
 		<div class="tab-content">

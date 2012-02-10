@@ -15,6 +15,7 @@
 			'online' => 'Online',
 			'hidden' => 'Hide in navigation',
 			'homepage' => 'Make this the homepage',
+			'layout' => 'Page layout',
 			'meta_legend' => 'Meta',
 			'meta' => array(
 				'title' => 'Title',

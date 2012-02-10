@@ -140,7 +140,7 @@ class Bundle {
 	 * @param  string  $bundle
 	 * @return void
 	 */
-	public static function start($bundle)
+	public static function start($bundle, $debug = false)
 	{
 		if (static::started($bundle)) return;
 

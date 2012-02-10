@@ -16,6 +16,11 @@ class Layout extends Model {
 		'content' => 'required'
 	);
 
+	public function layoutgroup()
+	{
+		return $this->belongs_to('Layoutgroup');
+	}
+
 	public function validate_and_insert()
 	{
 		$validator = new Validator(Input::all(), $this->rules);

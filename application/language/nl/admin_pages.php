@@ -15,6 +15,7 @@
 			'online' => 'Online',
 			'hidden' => 'Verberg in navigatie',
 			'homepage' => 'Stel in als de homepagina',
+			'layout' => 'Pagina sjabloon',
 			'meta_legend' => 'Meta',
 			'meta' => array(
 				'title' => 'Titel',

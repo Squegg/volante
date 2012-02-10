@@ -31,8 +31,16 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 			$errors[$language->language_key] = Session::has('errors.'.$language->language_key) ? Session::get('errors.'.$language->language_key) : new Laravel\Messages;
 		}
 
+		$layouts = array();
+		foreach(Layout::with('layoutgroup')->get() as $layout)
+		{
+			if($layout->type != 'webpage') continue;
+			$layouts[$layout->id] = $layout->layoutgroup->name.' - '.$layout->name;
+		}
+
 		$this->layout->content = View::make('admin.pages.add')
 									 ->with('languages', Language::all())
+									 ->with('layouts', $layouts)
 									 ->with('errors', $errors);
 	}
 

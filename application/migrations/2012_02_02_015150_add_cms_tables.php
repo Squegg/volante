@@ -16,6 +16,7 @@ class Add_Cms_Tables {
 			$table->boolean('homepage');
 			$table->boolean('online');
 			$table->boolean('hidden');
+			$table->integer('layout_id');
 			$table->timestamp('created_at');
 			$table->timestamp('updated_at');
 		});

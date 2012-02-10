@@ -47,6 +47,7 @@ class Page extends Model {
 			$this->online = Input::get('online');
 			$this->hidden = Input::get('hidden');
 			$this->homepage = Input::get('homepage');
+			$this->layout_id = Input::get('layout_id');
 
 			if($this->homepage)
 			{
