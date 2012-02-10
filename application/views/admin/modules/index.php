@@ -35,7 +35,6 @@
 	<?php else: ?>
 		<div class="well">
 			<?= __('admin_modules.index.no_results') ?>
-			Er zijn geen modules gevonden...
 		</div>
 	<?php endif ?>
 	<div class="pull-right">
