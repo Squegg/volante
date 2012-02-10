@@ -43,6 +43,10 @@ class Fill_Database {
 		$role_lang->name = 'Administrator';
 		$role_lang->description = 'King of the castle';
 		$role_lang->save();
+
+		$settings = new Setting;
+		$settings->default_language_id = $english->id;
+		$settings->save();
 	}
 
 	/**
