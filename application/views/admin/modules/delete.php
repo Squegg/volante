@@ -1,11 +1,11 @@
 <div id="main">
 	<div class="page-header">
-		<h1>Are you sure?</h1>
+		<h1><?= __('admin_modules.delete.title') ?></h1>
 	</div>
 	<div class="well">
-		You are about to uninstall the module named "<?= $module->module_key ?>". <b>If you do, there is no turning back!</b>
+		<?= __('admin_modules.delete.message', array($module->module_key)) ?>
 	</div>
-	<?= Form::open('admin/modules/delete/'.$module->module_key, 'PUT') ?>
-		<?= Form::actions(array(Form::submit('Uninstall module', array('class' => 'btn btn-large btn-danger')), ' &nbsp; '.HTML::link('admin/accounts', 'Nope, I changed my mind', array('class' => 'btn btn-large')))) ?>
+	<?= Form::open('admin/modules/delete/'.$module->id, 'PUT') ?>
+		<?= Form::actions(array(Form::submit(__('admin_modules.delete.confirm'), array('class' => 'btn btn-large btn-danger')), ' &nbsp; '.HTML::link('admin/modules', __('admin_modules.delete.backtoindex'), array('class' => 'btn btn-large')))) ?>
 	<?= Form::close() ?>
 </div>

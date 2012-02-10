@@ -24,7 +24,7 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 	{
 		if(Authority::cannot('create', 'Module'))
 		{
-			return Redirect::to('admin/modules/index');
+			return Redirect::to('admin/modules');
 		}
 
 		$this->layout->content = View::make('admin.modules.add')
@@ -35,9 +35,9 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 	{
 		if( ! Input::has('module'))
 		{
-			Notification::error('Please select a module that you would like to install');
+			Notification::error(__('admin_modules.add.selectone'));
 
-			Redirect::to('admin/modules/add');
+			return Redirect::to('admin/modules/add');
 		}
 
 		foreach (array_keys(Input::get('module')) as $module_key) {
@@ -45,11 +45,10 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 
 			$errors = $module->install($module_key);
 		}
-		die;
 
-		Notification::success('Successfully installed module');
+		Notification::success(__('admin_modules.add.success'));
 
-		return Redirect::to('admin/modules/index');
+		return Redirect::to('admin/modules');
 	}
 
 	public function get_update($id = 0)
@@ -58,7 +57,7 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 
 		if( ! $module OR $id == 0 OR Authority::cannot('update', 'Module', $page))
 		{
-			return Redirect::to('admin/modules/index');
+			return Redirect::to('admin/modules');
 		}
 
 		$this->layout->content = View::make('admin.modules.edit')
@@ -70,7 +69,7 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 		$module = Module::find($id);
 		if( ! $module OR $id == 0)
 		{
-			return Redirect::to('admin/modules/index');
+			return Redirect::to('admin/modules');
 		}
 
 		$errors = $page->validate_and_update();
@@ -81,7 +80,7 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 				   ->with_input();
 		}
 
-		Notification::success('Successfully updated module');
+		Notification::success(__('admin_modules.edit.success'));
 
 		return Redirect::to('admin/modules/index');
 	}
@@ -92,7 +91,7 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 
 		if( ! $module OR $module_key == '' OR Authority::cannot('delete', 'Module', $module))
 		{
-			return Redirect::to('admin/modules/index');
+			return Redirect::to('admin/modules');
 		}
 
 		$this->layout->content = View::make('admin.modules.delete')
@@ -104,14 +103,14 @@ class Admin_Modules_Controller extends Admin_Base_Controller {
 		$module = Module::find($id);
 		if( ! $module OR $id == 0 OR Authority::cannot('delete', 'Module', $module))
 		{
-			return Redirect::to('admin/modules/index');
+			return Redirect::to('admin/modules');
 		}
 
 		$module->delete();
 
-		Notification::success('Successfully removed module');
+		Notification::success(__('admin_modules.delete.success'));
 
-		return Redirect::to('admin/modules/index');
+		return Redirect::to('admin/modules');
 	}
 
 }
