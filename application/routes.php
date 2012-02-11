@@ -35,6 +35,9 @@ Router::register('GET /set_language/(:any)', function($id) {
 Router::register('* /admin', 'admin.dashboard@index');
 Router::register('* /admin/dashboard', 'admin.dashboard@index');
 
+Router::register('* /admin/ajax/(:any?)', 'admin.ajax@(:1)');
+Router::register('* /admin/ajax/(:any)/(:any?)', 'admin.ajax@(:1)');
+
 Router::register('* /admin/account/(:any?)', 'admin.account@(:1)');
 Router::register('* /admin/account/(:any)/(:any?)', 'admin.account@(:1)');
 
