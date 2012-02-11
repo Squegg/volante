@@ -26,10 +26,7 @@ email: `admin@admin.com`
 
 password: `admin`
 
-
-### Check the demo at
-
-`http://84.30.117.40/volante/admin`
+### [check the online demo](://84.30.117.40/volante/admin)
 
 
 ## Laravel - A PHP Framework For Web Artisans
