@@ -3,8 +3,8 @@ class CMS {
 
 	public static function routes()
 	{
-		Router::register('GET /assets/(.*)', 'cms.core@asset');
-		Router::register(array('GET /(.*)', 'PUT /(.*)', 'DELETE /(.*)', 'POST /(.*)'), 'cms.core@page');
+		Route::get('assets/(.*)', 'cms.core@asset');
+		Route::any('(.*)', 'cms.core@page');
 	}
 
 }

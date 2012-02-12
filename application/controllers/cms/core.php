@@ -11,7 +11,7 @@ class Cms_Core_Controller extends Controller {
 				->join('page_lang', 'pages.id', '=', 'page_lang.page_id')
 				->where('pages.online', '=', true)
 				->where('page_lang.active', '=', true)
-				->where('page_lang.uri', '=', implode('/', array_slice($segments, 1)))
+				->where('page_lang.url', '=', implode('/', array_slice($segments, 1)))
 				->where('page_lang.language_id', '=', $language->id)
 				->get();
 

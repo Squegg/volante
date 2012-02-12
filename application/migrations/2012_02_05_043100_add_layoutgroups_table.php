@@ -14,7 +14,7 @@ class Add_Layoutgroups_Table {
 			$table->create();
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('module_id');
+			$table->integer('module_id')->nullable();
 		});
 	}
 
