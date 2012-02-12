@@ -36,6 +36,10 @@ class Fill_Database {
 				'role_id' => $role->id
 			)
 		);
+		
+		$layoutgroup = new LayoutGroup;
+		$layoutgroup->name = 'Main';
+		$layoutgroup->save();
 
 		$role_lang = new RoleLang;
 		$role_lang->role_id = $role->id;
