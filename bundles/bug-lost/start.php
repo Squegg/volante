@@ -8,5 +8,5 @@ Event::listen('laravel: query', function($sql, $bindings, $time)
 
 Event::listen('laravel: done', function()
 {
-	echo bl_debug(get_defined_vars());
+	if( ! Session::has('no_debug')) echo bl_debug(get_defined_vars());
 });

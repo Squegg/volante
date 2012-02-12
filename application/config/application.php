@@ -125,7 +125,7 @@ return array(
 		'cache' => 0,
 		'auto'  => array(
 			'authority',
-			'bug-lost'
+			//'bug-lost'
 		),
 	),
 
@@ -184,7 +184,7 @@ return array(
 		'URI'        => 'Laravel\\URI',
 		'Validator'  => 'Laravel\\Validator',
 		'View'       => 'Laravel\\View',
-		'Model'     => 'Eloquent\\Model',
+		'Model'      => 'Eloquent\\Model',
 	),
 
 );

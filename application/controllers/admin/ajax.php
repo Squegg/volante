@@ -1,8 +1,9 @@
 <?php
 class Admin_Ajax_Controller extends Controller {
 
-	public function return_json($data)
+	private function return_json($data)
 	{
+		Session::flash('no_debug', true);
 		$headers = array('Content-type' => 'application/json');
 		return Response::make(json_encode($data), 200, $headers);
 	}
@@ -19,7 +20,7 @@ class Admin_Ajax_Controller extends Controller {
 
 		if( ! Input::has('input') && ! Input::has('rules'))
 		{
-			$this->return_json(
+			return $this->return_json(
 				array(
 					'status' => 2,
 					'description' => 'Didn\'t receive any input and rules',
@@ -30,7 +31,7 @@ class Admin_Ajax_Controller extends Controller {
 
 		if( ! Input::has('input'))
 		{
-			$this->return_json(
+			return $this->return_json(
 				array(
 					'status' => 3,
 					'description' => 'Didn\'t receive any input',
@@ -41,7 +42,7 @@ class Admin_Ajax_Controller extends Controller {
 
 		if( ! Input::has('rules'))
 		{
-			$this->return_json(
+			return $this->return_json(
 				array(
 					'status' => 4,
 					'description' => 'Didn\'t receive any rules',
@@ -53,17 +54,17 @@ class Admin_Ajax_Controller extends Controller {
 		$validator = new Validator(Input::get('input'), Input::get('rules'));
 		if( ! $validator->valid())
 		{
-			$this->return_json(
+			return $this->return_json(
 				array(
 					'status' => 1,
 					'description' => 'Validation errors found',
-					'result' => (array) $validator->errors(),
+					'result' => (array) $validator->errors,
 					'statusTypes' => $status_types
 				)
 			);
 		}
 
-		$this->return_json(
+		return $this->return_json(
 			array(
 				'status' => 0,
 				'description' => 'Valition was successfull',

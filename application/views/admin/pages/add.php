@@ -26,7 +26,7 @@
 						<legend class="offset2"><?= __('admin_pages.add.form.page_legend') ?></legend>
 					</div>
 					<?= Form::field('text', $language->language_key.'[menu]', __('admin_pages.add.form.page.menu'), array($old['menu'], array('style' => 'width: 770px')), array('error' => $errors[$language->language_key]->first('menu'))) ?>
-					<?= Form::field('text', $language->language_key.'[url]', __('admin_pages.add.form.page.url'), array($old['url'], array('style' => 'width: 770px')), array('error' => $errors[$language->language_key]->first('url'))) ?>
+					<?= Form::field('text', $language->language_key.'[url]', __('admin_pages.add.form.page.url'), array($old['url'], array('style' => 'width: 770px', 'class' => 'url')), array('error' => $errors[$language->language_key]->first('url'))) ?>
 					<?= Form::field('text', $language->language_key.'[title]', __('admin_pages.add.form.page.title'), array($old['title'], array('style' => 'width: 770px')), array('error' => $errors[$language->language_key]->first('title'))) ?>
 					<?= Form::field('textarea', $language->language_key.'[content]', __('admin_pages.add.form.page.content'), array($old['content'], array('style' => 'height: 350px; width: 770px')), array('error' => $errors[$language->language_key]->first('content'))) ?>
 				</fieldset>
@@ -37,3 +37,45 @@
 	<?= Form::actions(array(Form::submit(__('admin_pages.add.form.submit'), array('class' => 'btn btn-large btn-primary')))) ?>
 	<?= Form::close() ?>
 </div>
+<a onclick="validateForm()" class="btn">click</a>
+<script type="text/javascript">
+	var validator;
+
+	$(document).ready(function() {
+		validator = new Validator({
+			'unique:page_lang,url|required': {
+				fields: ['nl[url]', 'en[url]'],
+				name: 'URL',
+				live: true,
+				errorHandler: function(errors) {
+					for(var name in errors) {
+						var elem = $('[name=\''+name+'\']');
+						elem.parent().parent().addClass('error');
+						elem.parent().append('<span class="help-inline">' + errors[name][0] + '</span>');
+					}
+					console.info('Live validation errors!');
+					console.log(errors);
+				},
+				successHandler: function() {
+					console.info('Live validation success!');
+				}
+			},
+			'in:1,2,3': {
+				fields: 'layout_id',
+				name: 'Layout'
+			}
+		});
+	});
+
+	function validateForm() {
+		validator.validate(
+			function(errors) {
+				console.info('Form validation errors!');
+				console.log(errors);
+			},
+			function() {
+				console.info('Form validation success!');
+			}
+		);
+	}
+</script>

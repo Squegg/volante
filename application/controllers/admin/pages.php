@@ -38,6 +38,8 @@ class Admin_Pages_Controller extends Admin_Base_Controller {
 			$layouts[$layout->id] = $layout->layoutgroup->name.' - '.$layout->name;
 		}
 
+		Asset::container('footer')->add('validate', 'js/admin/validator.js');
+
 		$this->layout->content = View::make('admin.pages.add')
 									 ->with('languages', Language::all())
 									 ->with('layouts', $layouts)
