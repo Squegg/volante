@@ -37,20 +37,16 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 			return Redirect::to('admin/layouts');
 		}
 
-		$roles_lang = array();
-		foreach(DB::table('role_lang')->get() as $role_lang)
-		{
-			$roles_lang[$role_lang->id] = $role_lang;
-		}
+		Asset::container('footer')
+				   ->add('ace', 'ace/ace.js')
+				   ->add('theme-twilight', 'ace/theme-twilight.js')
+				   ->add('mode-js', 'ace/mode-javascript.js')
+				   ->add('mode-css', 'ace/mode-css.js')
+				   ->add('mode-html', 'ace/mode-html.js')
+   				   ->add('forms', 'js/admin/layouts/forms.js');
 
-		$roles = array();
-		foreach(Role::all() as $role)
-		{
-			$roles[$role->id] = $roles_lang[$role->id]->name;
-		}
 
-		$this->layout->content = View::make('admin.layouts.add')
-									 ->with('roles', $roles);
+		$this->layout->content = View::make('admin.layouts.add');
 	}
 
 	public function post_add()
@@ -78,6 +74,14 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 		{
 			return Redirect::to('admin/layouts/index');
 		}
+
+		Asset::container('footer')
+				   ->add('ace', 'ace/ace.js')
+				   ->add('theme-twilight', 'ace/theme-twilight.js')
+				   ->add('mode-js', 'ace/mode-javascript.js')
+				   ->add('mode-css', 'ace/mode-css.js')
+				   ->add('mode-html', 'ace/mode-html.js')
+   				   ->add('forms', 'js/admin/layouts/forms.js');
 
 		$this->layout->content = View::make('admin.layouts.edit')
 									 ->with('layout', $layout);
