@@ -1,0 +1,17 @@
+<?php
+$test = '
+{site::name}
+{site::sitemap}
+{site::current_url}
+{site::menu from="nl" depth="2"}
+{site::sub_menu}
+{site::link to="en/company/about-us"}
+{site::link to_module="webshop::product:nivea-for-man-shower-gel-40-percent-off"}
+
+{page::meta_title}
+
+{partial::header}
+{partial::menu}
+{partial::footer}
+';
+var_dump(preg_match('\{(.*)::(.*)\}', $test));

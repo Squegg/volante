@@ -50,5 +50,5 @@ class Layout extends Model {
 
 		return $validator->errors;
 	}
-
+	
 }

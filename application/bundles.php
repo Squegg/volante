@@ -37,5 +37,6 @@ return array(
 	'eloquent',
 	'authority' => array(
 		'auto' => true
-	)
+	),
+	'bob'
 );

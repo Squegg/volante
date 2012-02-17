@@ -44,14 +44,14 @@ class Page extends Model {
 
 		if (empty($errors))
 		{
-			$this->online = Input::get('online');
-			$this->hidden = Input::get('hidden');
-			$this->homepage = Input::get('homepage');
+			$this->online = (int) Input::get('online');
+			$this->hidden = (int) Input::get('hidden');
+			$this->homepage = (int) Input::get('homepage');
 			$this->layout_id = Input::get('layout_id');
 
 			if($this->homepage)
 			{
-				DB::table('pages')->update(array('homepage' => false));
+				DB::table('pages')->update(array('homepage' => 0));
 			}
 
 			$this->save();
@@ -64,7 +64,7 @@ class Page extends Model {
 						'page_id' => $this->id,
 						'created_at' => 'NOW()',
 						'updated_at' => 'NOW()',
-						'active' => true
+						'active' => 1
 					),
 					array_intersect_key(Input::get($language->language_key), array_flip(array('meta_title', 'meta_description', 'meta_keywords', 'menu', 'url', 'title', 'content')))
 				);
