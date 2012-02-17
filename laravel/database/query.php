@@ -3,7 +3,6 @@
 use Closure;
 use Laravel\Database;
 use Laravel\Paginator;
-use Laravel\Database\Query\Grammars\Grammar;
 use Laravel\Database\Query\Grammars\SQLServer;
 
 class Query {
@@ -107,7 +106,7 @@ class Query {
 	 * @param  string      $table
 	 * @return void
 	 */
-	public function __construct(Connection $connection, Grammar $grammar, $table)
+	public function __construct(Connection $connection, Query\Grammars\Grammar $grammar, $table)
 	{
 		$this->from = $table;
 		$this->grammar = $grammar;
@@ -158,6 +157,7 @@ class Query {
 
 			call_user_func($column1, end($this->joins));
 		}
+
 		// If the column is just a string, we can assume that the join just
 		// has a simple on clause, and we'll create the join instance and
 		// add the clause automatically for the develoepr.
@@ -402,11 +402,11 @@ class Query {
 		// will allow the developer to have a fresh query.
 		$query = new Query($this->connection, $this->grammar, $this->from);
 
-		// Once the callback has been run on the query, we will store the
-		// nested query instance on the where clause array so that it's
-		// passed to the query grammar.
 		call_user_func($callback, $query);
 
+		// Once the callback has been run on the query, we will store the
+		// nested query instance on the where clause array so that it's
+		// passed to the query's query grammar instance.
 		$this->wheres[] = compact('type', 'query', 'connector');
 
 		$this->bindings = array_merge($this->bindings, $query->bindings);
@@ -649,15 +649,18 @@ class Query {
 	 */
 	public function aggregate($aggregator, $columns)
 	{
+		// We'll set the aggregate value so the grammar does not try to compile
+		// a SELECT clause on the query. If an aggregator is present, it's own
+		// grammar function will be used to build the SQL syntax.
 		$this->aggregate = compact('aggregator', 'columns');
 
 		$sql = $this->grammar->select($this);
 
 		$result = $this->connection->only($sql, $this->bindings);
 
-		// Reset the aggregate so more queries can be performed using
-		// the same instance. This is helpful for getting aggregates
-		// and then getting actual results from the query.
+		// Reset the aggregate so more queries can be performed using the same
+		// instance. This is helpful for getting aggregates and then getting
+		// actual results from the query such as during paging.
 		$this->aggregate = null;
 
 		return $result;
@@ -674,8 +677,7 @@ class Query {
 	{
 		// Because some database engines may throw errors if we leave orderings
 		// on the query when retrieving the total number of records, we'll drop
-		// all of the ordreings and put them back on the query after we have
-		// retrieved the count from the table.
+		// all of the ordreings and put them back on the query.
 		list($orderings, $this->orderings) = array($this->orderings, null);
 
 		$total = $this->count(reset($columns));
@@ -686,8 +688,7 @@ class Query {
 
 		// Now we're ready to get the actual pagination results from the table
 		// using the for_page and get methods. The "for_page" method provides
-		// a convenient way to set the limit and offset so we get the correct
-		// span of results from the table.
+		// a convenient way to set the paging limit and offset.
 		$results = $this->for_page($page, $per_page)->get($columns);
 
 		return Paginator::make($results, $total, $per_page);
@@ -718,7 +719,7 @@ class Query {
 
 		$sql = $this->grammar->insert($this, $values);
 
-		return $this->connection->statement($sql, $bindings);
+		return $this->connection->query($sql, $bindings);
 	}
 
 	/**
@@ -732,7 +733,7 @@ class Query {
 	{
 		$sql = $this->grammar->insert($this, $values);
 
-		$this->connection->statement($sql, array_values($values));
+		$this->connection->query($sql, array_values($values));
 
 		// Some database systems (Postgres) require a sequence name to be
 		// given when retrieving the auto-incrementing ID, so we'll pass
@@ -774,10 +775,12 @@ class Query {
 	 */
 	protected function adjust($column, $amount, $operator)
 	{
-		// To make the adjustment to the column, we'll wrap the expression
-		// in an Expression instance, which forces the adjustment to be
-		// injected into the query as a string instead of bound.
-		$value = Database::raw($this->grammar->wrap($column).$operator.$amount);
+		$wrapped = $this->grammar->wrap($column);
+
+		// To make the adjustment to the column, we'll wrap the expression in
+		// an Expression instance, which forces the adjustment to be injected
+		// into the query as a string instead of bound.
+		$value = Database::raw($wrapped.$operator.$amount);
 
 		return $this->update(array($column => $value));
 	}
@@ -798,7 +801,7 @@ class Query {
 
 		$sql = $this->grammar->update($this, $values);
 
-		return $this->connection->update($sql, $bindings);
+		return $this->connection->query($sql, $bindings);
 	}
 
 	/**
@@ -821,7 +824,7 @@ class Query {
 
 		$sql = $this->grammar->delete($this);
 
-		return $this->connection->delete($sql, $this->bindings);
+		return $this->connection->query($sql, $this->bindings);		
 	}
 
 	/**

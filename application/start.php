@@ -22,7 +22,7 @@ Autoloader::map(array(
 
 /*
 |--------------------------------------------------------------------------
-| Auto-Loader PSR-0 Directories
+| Auto-Loader Directories
 |--------------------------------------------------------------------------
 |
 | The Laravel auto-loader can search directories for files using the PSR-0
@@ -35,7 +35,7 @@ Autoloader::map(array(
 |
 */
 
-Autoloader::psr(array(
+Autoloader::directories(array(
 	path('app').'models',
 	path('app').'libraries',
 ));
