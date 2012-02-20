@@ -34,9 +34,15 @@
 */
 
 return array(
-	'eloquent',
+	'eloquent' => array(
+		'auto'=>true
+	),
 	'authority' => array(
 		'auto' => true
 	),
-	'bob'
+	'bob',
+	'flui' => array(
+		'auto' => true,
+		'handles' => 'flui'
+	)
 );

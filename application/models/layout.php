@@ -6,14 +6,13 @@ class Layout extends Model {
 	public static $types = array(
 		'partial' => 'Partial',
 		'webpage' => 'Webpage',
+		'decorator' => 'Decorator',
 		'javascript' => 'Javascript',
 		'stylesheet' => 'Stylesheet'
 	);
 
 	public $rules = array(
-		'name' => 'required',
-		'type' => 'required|in:partial,webpage,javascript,stylesheet',
-		'content' => 'required'
+		'name' => 'required'
 	);
 
 	public function layoutgroup()
@@ -29,7 +28,7 @@ class Layout extends Model {
 		{
 			$this->name = Input::get('name');
 			$this->type = Input::get('type');
-			$this->content = Input::get('content');
+			$this->content = $this->type == 'decorator' ? Input::get('before') . Config::get('application.key') . Input::get('after') : Input::get('content');		
 			$this->layoutgroup_id = DB::table('layoutgroups')->where_null('module_id')->first()->id;
 			$this->save();
 		}
@@ -44,7 +43,7 @@ class Layout extends Model {
 		{
 			$this->name = Input::get('name');
 			$this->type = Input::get('type');
-			$this->content = Input::get('content');
+			$this->content = $this->type == 'decorator' ? Input::get('before') . Config::get('application.key') . Input::get('after') : Input::get('content');		
 			$this->save();
 		}
 

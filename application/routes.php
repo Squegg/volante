@@ -2,7 +2,7 @@
 Route::controller(array('admin.dashboard', 'admin.ajax', 'admin.accounts', 'admin.account', 'admin.modules', 'admin.layouts', 'admin.pages', 'admin.settings'));
 Route::any('admin', 'admin.dashboard@index');
 
-CMS::routes();
+//CMS::routes();
 
 Filter::register('before', function()
 {

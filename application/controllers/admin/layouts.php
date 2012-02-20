@@ -18,7 +18,6 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 
 			if(Input::has('q'))
 			{
-				die(Input::get('q'));
 				foreach(array('name') as $column)
 				{
 					$layoutgroups->or_where($column, '~*', Input::get('q'));
@@ -69,6 +68,12 @@ class Admin_Layouts_Controller extends Admin_Base_Controller {
 	public function get_edit($id = 0)
 	{
 		$layout = Layout::find($id);
+
+		if($layout->type == 'decorator')
+		{
+			list($layout->before, $layout->after) = explode(Config::get('application.key'), $layout->content);
+			$layout->content = '';
+		}
 
 		if( ! $layout OR $id == 0 OR Authority::cannot('update', 'Layout', $layout))
 		{
