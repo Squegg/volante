@@ -27,7 +27,7 @@
 						<h2><?= $layout->name ?></h2>
 					</td>
 					<td>
-						<?= $layout->type ?>
+						<?= strtolower(Layout::$types[$layout->type]) ?>
 					</td>
 					<td width="120" class="last">
 						<?= HTML::link('admin/layouts/edit/'.$layout->id, '<i class="icon-pencil"></i>', array('class' => 'btn')) ?>
