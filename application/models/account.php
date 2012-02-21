@@ -22,7 +22,7 @@ class Account extends Model {
 	 * @param	string	$key	the role key
 	 * @return	boolean
 	 */
-	public static function has_role($key)
+	public function has_role($key)
 	{
 		foreach(Auth::user()->roles as $role)
 		{
@@ -41,7 +41,7 @@ class Account extends Model {
 	 * @param	array	$keys	the role keys
 	 * @return	boolean
 	 */
-	public static function has_any_role($keys)
+	public function has_any_role($keys)
 	{
 		if( ! is_array($keys))
 		{

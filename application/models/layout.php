@@ -7,8 +7,8 @@ class Layout extends Model {
 		'partial' => 'Partial',
 		'webpage' => 'Webpage',
 		'decorator' => 'Decorator',
-		'javascript' => 'Javascript',
-		'stylesheet' => 'Stylesheet'
+		'js' => 'Javascript',
+		'css' => 'Stylesheet'
 	);
 
 	public $rules = array(

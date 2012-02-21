@@ -26,10 +26,10 @@ $('#type').change(function() {
 	$('#split').hide();
 	$('#normal').show();
 	switch($(this).val()) {
-		case 'javascript':
+		case 'js':
 			setMode(new javascript());
 		break;
-		case 'stylesheet':
+		case 'css':
 			setMode(new css());
 		break;
 		case 'decorator':
