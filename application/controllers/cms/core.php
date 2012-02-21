@@ -15,18 +15,38 @@ class Cms_Core_Controller extends Controller {
 				->where('page_lang.language_id', '=', $language->id)
 				->first();
 
-		return Response::make(Parse::page($page), 200);
+		$content = Parse::page($page);
+
+		if(Authority::can('update', 'Page'))
+		{
+			Asset::container('header')->add('jquery', 'js/jquery.min.js');
+			Asset::container('header')->add('jquery-ui', 'js/jquery-ui.min.js');
+			Asset::container('header')->add('frontend-css', 'css/volante/frontend.css');
+			Asset::container('footer')->add('frontend-js', 'js/volante/frontend.js');
+
+			$decorators = Layout::where_type('decorator')->get();
+			$header_append = Asset::container('header')->styles().Asset::container('header')->scripts();
+			$body_append = View::make('frontend.widgets')->render().View::make('frontend.decorators')->with('decorators', $decorators)->render().Asset::container('footer')->scripts();
+			
+			$content = str_replace('</head>', $header_append.'</head>', $content);
+			$content = str_replace('</body>', $body_append.'</body>', $content);
+		}
+
+		return Response::make($content, 200);
 	}
 
 	public function action_asset($uri)
 	{
 		$content_types = array(
-			'stylesheet' => 'text/css',
-			'javascript' => 'text/javascript'
+			'css' => 'text/css',
+			'js' => 'text/javascript'
 		);
+		
+		list($uri, $type) = explode('.', $uri);
+		$segments = explode('/', $uri);
 
-		$asset = DBAsset::where_uri($uri)->first();
-		return Response::make($asset->content, 200, array('Content-Type' => $content_types[$asset->content_type]));
+		$asset = Layout::where_name(implode('/', array_slice($segments, 1)))->first();
+		return Response::make($asset->content, 200, array('Content-Type' => $content_types[$type]));
 	}
 
 }
