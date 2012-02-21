@@ -15,7 +15,7 @@ use FlUI\Entities\Form\Fields\Select;
 use FlUI\Entities\Form\Fields\Text;
 use FlUI\Entities\Form\Fields\TextArea;
 
-class Page extends Module {
+class Webshop extends Module {
 	
 	public function index()
 	{
@@ -30,7 +30,7 @@ class Page extends Module {
 	{
 		$layout_id_options = array();
 
-		return new Form($config, $fields);
+		//return new Form($config, $fields);
 
 		return array(
 			new CheckBox('online', 1),
