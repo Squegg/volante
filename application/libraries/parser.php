@@ -47,6 +47,20 @@ class Parser {
 		return $content;
 	}
 
+	protected static function _widget($action, $arguments)
+	{
+		
+	}
+
+	protected static function _asset($container, $arguments)
+	{
+		$name = $arguments['name'];
+		if($asset = Layout::raw_where('LOWER(name) = \''.$name.'\'')->first())
+		{
+			Asset::container($container)->add($name, 'assets/'.$asset->type.'/'.$name.'.'.$asset->type);	
+		}
+	}
+
 	protected static function _site($action, $arguments)
 	{
 		switch($action)
@@ -77,6 +91,16 @@ class Parser {
 
 	protected static function _page($action, $arguments, $page)
 	{
+		if($action == 'region')
+		{
+			$data = '';
+			foreach ($arguments as $key => $value) {
+				$data .= ' data-'.$key.'="'.$value.'"';
+			}
+
+			return '<div style="height: 200px;" class="volante-region"'.$data.'></div>';
+		}
+
 		return $page->$action;
 	}
 
