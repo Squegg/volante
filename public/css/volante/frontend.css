@@ -1,0 +1,28 @@
+#volante-elements {
+	display: none; }
+
+#volante-widgets { 
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-top: 4px solid #E0E0E0;
+	padding: 10px 0; }
+
+#volante-widgets .inner {
+	text-align: center;
+	clear: both; }
+
+#volante-widgets .volante-widget {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+	border: 4px solid #E0E0E0; }
+
+.volante-widget-dragging {
+	width: 60px;
+	height: 60px;
+	border: 4px solid #E0E0E0;
+	background: #c0c0c0;
+}
