@@ -19,8 +19,8 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 			$roles_lang[$role_lang->id] = $role_lang;
 		}
 
-		$accounts = Account::with(array('roles'))->
-						 order_by(Input::get('sort_by', 'name'), Input::get('order', 'ASC'));
+		$accounts = Account::with('roles')->
+			order_by(Input::get('sort_by', 'name'), Input::get('order', 'ASC'));
 
 		if(Input::has('q'))
 		{
@@ -30,9 +30,8 @@ class Admin_Accounts_Controller extends Admin_Base_Controller {
 			}
 		}
 
-		$this->layout->content = View::make('admin.accounts.index')
-									 ->with('accounts', $accounts->paginate(10))
-									 ->with('roles_lang', $roles_lang);
+		$this->layout->content = View::make('admin.accounts.index')->with('accounts', $accounts->paginate(10))
+																   ->with('roles_lang', $roles_lang);
 	}
 
 	public function get_add()

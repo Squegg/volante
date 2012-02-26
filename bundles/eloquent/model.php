@@ -1,7 +1,7 @@
 <?php namespace Eloquent;
 
 use Laravel\Str;
-use Paginator;
+use Laravel\Paginator;
 use Laravel\Database as DB;
 
 abstract class Model {
@@ -28,18 +28,18 @@ abstract class Model {
 	public static $sequence = null;
 
 	/**
+	 * The name of the primary key of the model.
+	 *
+	 * @var string
+	 */
+	public static $primary_key = 'id';
+
+	/**
 	 * The model query instance.
 	 *
 	 * @var Query
 	 */
 	public $query;
-
-	/**
-	 * Additional statements
-	 *
-	 * @var array
-	 */
-	public $additional_queries = array();
 
 	/**
 	 * Indicates if the model exists in the database.
@@ -49,7 +49,7 @@ abstract class Model {
 	public $exists = false;
 
 	/**
-	 * The model's attributes.
+	 * The model's attributes. 
 	 *
 	 * Typically, a model has an attribute for each column on the table.
 	 *
@@ -96,7 +96,7 @@ abstract class Model {
 	public $relating_key;
 
 	/**
-	 * The table name of the model being resolved.
+	 * The table name of the model being resolved. 
 	 *
 	 * This is used during many-to-many eager loading.
 	 *
@@ -136,18 +136,9 @@ abstract class Model {
 	 *
 	 * @return Model
 	 */
-	private function _with($includes, \Closure $query = null)
+	private function _with()
 	{
-		if( ! is_array($includes))
-		{
-			$includes = array($includes);
-		}
-
-		if( ! is_null($query))
-		{
-			$this->additional_queries[] = $query;
-		}
-		$this->includes = array_merge($this->includes, $includes);
+		$this->includes = func_get_args();
 
 		return $this;
 	}
@@ -198,60 +189,84 @@ abstract class Model {
 	}
 
 	/**
+	 * Get the primary key for a model.
+	 *
+	 * @param  string  $class
+	 * @return string
+	 */
+	public static function pk($class)
+	{
+		return $class::$primary_key;
+	}
+
+	/**
 	 * Get all of the models from the database.
 	 *
+	 * @param  array  $columns
 	 * @return array
 	 */
-	public static function all()
+	public static function all($columns = array('*'))
 	{
-		return Hydrator::hydrate(static::query(get_called_class()));
+		$model = static::query(get_called_class());
+
+		$model->query->select($columns);
+
+		return Hydrator::hydrate($model);
 	}
 
 	/**
 	 * Get a model by the primary key.
 	 *
-	 * @param  int  $id
+	 * @param  int    $id
+	 * @param  array  $columns
 	 * @return mixed
 	 */
-	public static function find($id)
+	public static function find($id, $columns = array('*'))
 	{
-		return static::query(get_called_class())->where('id', '=', $id)->first();
+		return static::query(get_called_class())->where(static::$primary_key, '=', $id)->first($columns);
 	}
 
 	/**
 	 * Get an array of models from the database.
 	 *
+	 * @param  array  $columns
 	 * @return array
 	 */
-	private function _get()
+	private function _get($columns = array('*'))
 	{
+		if (is_null($this->query->selects)) $this->query->select($columns);
+
 		return Hydrator::hydrate($this);
 	}
 
 	/**
 	 * Get the first model result
 	 *
+	 * @param  array  $columns
 	 * @return mixed
 	 */
-	private function _first()
+	private function _first($columns = array('*'))
 	{
-		return (count($results = $this->take(1)->_get()) > 0) ? reset($results) : null;
+		$columns = (array) $columns;
+
+		return (count($results = $this->take(1)->_get($columns)) > 0) ? reset($results) : null;
 	}
 
 	/**
 	 * Get paginated model results as a Paginator instance.
 	 *
 	 * @param  int        $per_page
+	 * @param  array      $columns
 	 * @return Paginator
 	 */
-	private function _paginate($per_page = null)
+	private function _paginate($per_page = null, $columns = array('*'))
 	{
 		list($orderings, $this->query->orderings) = array($this->query->orderings, null);
 
 		$total = $this->query->count();
 
 		$this->query->orderings = $orderings;
-
+		
 		// The number of models to show per page may be specified as a static property
 		// on the model. The models shown per page may also be overriden for the model
 		// by passing the number into this method. If the models to show per page is
@@ -261,7 +276,7 @@ abstract class Model {
 			$per_page = (property_exists(get_class($this), 'per_page')) ? static::$per_page : 20;
 		}
 
-		return Paginator::make($this->for_page(Paginator::page($total, $per_page), $per_page)->get(), $total, $per_page);
+		return Paginator::make($this->for_page(Paginator::page($total, $per_page), $per_page)->get($columns), $total, $per_page);
 	}
 
 	/**
@@ -285,13 +300,10 @@ abstract class Model {
 	 * @param  string  $foreign_key
 	 * @return mixed
 	 */
-	public function has_many($model, $foreign_key = null, \Closure $query = null)
+	public function has_many($model, $foreign_key = null)
 	{
 		$this->relating = __FUNCTION__;
-		if( ! is_null($query))
-		{
-			$this->additional_queries[] = $query;
-		}
+
 		return $this->has_one_or_many($model, $foreign_key);
 	}
 
@@ -310,7 +322,7 @@ abstract class Model {
 	{
 		$this->relating_key = (is_null($foreign_key)) ? strtolower(static::model_name($this)).'_id' : $foreign_key;
 
-		return static::query($model)->where($this->relating_key, '=', $this->id);
+		return static::query($model)->where($this->relating_key, '=', $this->{static::$primary_key});
 	}
 
 	/**
@@ -339,7 +351,7 @@ abstract class Model {
 			$this->relating_key = $caller['function'].'_id';
 		}
 
-		return static::query($model)->where('id', '=', $this->attributes[$this->relating_key]);
+		return static::query($model)->where(static::pk($model), '=', $this->attributes[$this->relating_key]);
 	}
 
 	/**
@@ -364,14 +376,14 @@ abstract class Model {
 		// the flexibility for self-referential many-to-many relationships.
 		$this->relating_key = (is_null($foreign_key)) ? strtolower(static::model_name($this)).'_id' : $foreign_key;
 
-		// The associated key is the foreign key name of the related model.
+		// The associated key is the foreign key name of the related model. 
 		// If the related model is "Role", the key would be "role_id".
 		$associated_key = (is_null($associated_key)) ? strtolower(static::model_name($model)).'_id' : $associated_key;
 
 		return static::query($model)
                              ->select(array(static::table($model).'.*', $this->relating_table.'.'.$this->relating_key))
-                             ->join($this->relating_table, static::table($model).'.id', '=', $this->relating_table.'.'.$associated_key)
-                             ->where($this->relating_table.'.'.$this->relating_key, '=', $this->id);
+                             ->join($this->relating_table, static::table($model).'.'.static::pk($model), '=', $this->relating_table.'.'.$associated_key)
+                             ->where($this->relating_table.'.'.$this->relating_key, '=', $this->{static::$primary_key});
 	}
 
 	/**
@@ -418,11 +430,11 @@ abstract class Model {
 		// Otherwise, we will insert the model and set the ID attribute.
 		if ($this->exists)
 		{
-			$success = ($this->query->where_id($this->attributes['id'])->update($this->dirty) === 1);
+			$success = ($this->query->where(static::$primary_key, '=', $this->attributes[static::$primary_key])->update($this->dirty) === 1);
 		}
 		else
 		{
-			$success = is_numeric($this->attributes['id'] = $this->query->insert_get_id($this->attributes, static::$sequence));
+			$success = is_numeric($this->attributes[static::$primary_key] = $this->query->insert_get_id($this->attributes, static::$sequence));
 		}
 
 		($this->exists = true) and $this->dirty = array();
@@ -458,7 +470,7 @@ abstract class Model {
 
 		$table = static::table(get_class($this));
 
-		return DB::connection(static::$connection)->table($table)->delete($this->id);
+		return DB::connection(static::$connection)->table($table)->delete($this->{static::$primary_key});
 	}
 
 	/**

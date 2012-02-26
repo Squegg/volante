@@ -23,12 +23,7 @@ function e($value)
  */
 function __($key, $replacements = array(), $language = null)
 {
-	if(is_null($language))
-	{
-		$language = Laravel\Session::get('language_key');
-	}
-
-	return Laravel\Lang::line($key, $replacements, $language)->get($language);
+	return Laravel\Lang::line($key, $replacements, $language);
 }
 
 /**
@@ -364,6 +359,20 @@ function str_contains($haystack, $needle)
 function str_finish($value, $cap)
 {
 	return rtrim($value, $cap).$cap;
+}
+
+/**
+ * Get the root namespace of a given class.
+ *
+ * @param  string  $class
+ * @return string
+ */
+function root_namespace($class)
+{
+	if (str_contains($class, '\\'))
+	{
+		return head(explode('\\', $class));
+	}
 }
 
 /**

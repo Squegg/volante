@@ -32,7 +32,7 @@ class Redirect extends Response {
 	 */
 	public static function to($url, $status = 302, $https = false)
 	{
-		return static::make('', $status)->header('Location', \CMS\URL::to($url, $https));
+		return static::make('', $status)->header('Location', URL::to($url, $https));
 	}
 
 	/**

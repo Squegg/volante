@@ -35,7 +35,12 @@
 
 return array(
 	'eloquent' => array(
-		'auto'=>true
+		'autoloads' => array(
+			'map' => array(
+				'Eloquent\\Model'    => '(:bundle)/model.php',
+				'Eloquent\\Hydrator' => '(:bundle)/hydrator.php',
+			),
+		),
 	),
 	'authority' => array(
 		'auto' => true
@@ -44,5 +49,8 @@ return array(
 	'flui' => array(
 		'auto' => true,
 		'handles' => 'flui'
-	)
+	),
+	'profiler' => array(
+		'auto' => true
+	),
 );

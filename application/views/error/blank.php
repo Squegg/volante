@@ -1,6 +1,3 @@
 <?= View::make('partials.header', $header_data) ?>
-<?= View::make('partials.menu', $menu_data) ?>
-<div class="container">
-	<?= $content ?>
-</div>
+		You must add a page first
 <?= View::make('partials.footer', $footer_data) ?>

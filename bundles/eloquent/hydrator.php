@@ -50,9 +50,11 @@ class Hydrator {
 
 			$model->exists = true;
 
-			if (isset($model->attributes['id']))
+			$pk = Model::pk($class);
+
+			if (isset($model->attributes[$pk]))
 			{
-				$models[$model->id] = $model;
+				$models[$model->$pk] = $model;
 			}
 			else
 			{
@@ -87,14 +89,6 @@ class Hydrator {
 		// This will allow us to load a range of related models instead of only one.
 		$relationship->query->reset_where();
 
-		if($additional_queries = $eloquent->additional_queries)
-		{
-			foreach ($additional_queries as $additional_query)
-			{
-				$relationship->query = $additional_query($relationship->query);
-			}
-		}
-
 		// Initialize the relationship attribute on the parents. As expected, "many" relationships
 		// are initialized to an array and "one" relationships are initialized to null.
 		foreach ($parents as &$parent)
@@ -104,13 +98,12 @@ class Hydrator {
 
 		if (in_array($relating = $eloquent->relating, array('has_one', 'has_many', 'belongs_to')))
 		{
-			return static::$relating($relationship, $parents, $eloquent->relating_key, $include);
+			return static::$relating($relationship, $parents, $eloquent->relating_key, $include);			
 		}
 		else
 		{
 			static::has_and_belongs_to_many($relationship, $parents, $eloquent->relating_key, $eloquent->relating_table, $include);
 		}
-
 	}
 
 	/**
@@ -145,7 +138,7 @@ class Hydrator {
 	{
 		foreach ($relationship->where_in($relating_key, array_keys($parents))->get() as $key => $child)
 		{
-			$parents[$child->$relating_key]->ignore[$include][$child->id] = $child;
+			$parents[$child->$relating_key]->ignore[$include][$child->{Model::pk(get_class($child))}] = $child;
 		}
 	}
 
@@ -167,7 +160,7 @@ class Hydrator {
 			$keys[] = $parent->$relating_key;
 		}
 
-		$children = $relationship->where_in('id', array_unique($keys))->get();
+		$children = $relationship->where_in(Model::pk(get_class($relationship)), array_unique($keys))->get();
 
 		foreach ($parents as &$parent)
 		{
@@ -187,7 +180,7 @@ class Hydrator {
 	 * @param  string  $relating_table
 	 * @param  string  $include
 	 *
-	 * @return void
+	 * @return void	
 	 */
 	private static function has_and_belongs_to_many($relationship, &$parents, $relating_key, $relating_table, $include)
 	{
@@ -214,9 +207,8 @@ class Hydrator {
 			// Remove the foreign key since it was only added to the query to help match the models.
 			unset($related->attributes[$relating_key]);
 
-			$parents[$child->$relating_key]->ignore[$include][$child->id] = $related;
+			$parents[$child->$relating_key]->ignore[$include][$child->{Model::pk($class)}] = $related;
 		}
-
 	}
 
 }
