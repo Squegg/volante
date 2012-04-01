@@ -35,7 +35,12 @@
 
 return array(
 	'eloquent' => array(
-		'auto'=>true
+		'autoloads' => array(
+			'map' => array(
+				'Eloquent\\Model'    => '(:bundle)/model.php',
+				'Eloquent\\Hydrator' => '(:bundle)/hydrator.php',
+			),
+		),
 	),
 	'authority' => array(
 		'auto' => true
@@ -51,5 +56,8 @@ return array(
 	),
 	'assetcompressor' => array(
 		'auto' => true
-	)
+	),
+	'profiler' => array(
+		'auto' => true
+	),
 );

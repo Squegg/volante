@@ -5,7 +5,6 @@
  * the configuration class, and the class auto-loader. Once this file
  * has run, the framework is essentially ready for use.
  */
-
 require 'core.php';
 
 /**
@@ -52,21 +51,6 @@ register_shutdown_function(function()
 error_reporting(-1);
 
 ini_set('display_errors', Config::get('error.display'));
-
-/**
- * Determine if we need to set the application key to a very random
- * string so we can provide a zero configuration installation but
- * still ensure that the key is set to something random. It is
- * possible to disable this feature.
- */
-$auto_key = Config::get('application.auto_key');
-
-if ($auto_key and Config::get('application.key') == '')
-{
-	ob_start() and with(new CLI\Tasks\Key)->generate();
-
-	ob_end_clean();
-}
 
 /**
  * Even though "Magic Quotes" are deprecated in PHP 5.3, they may
