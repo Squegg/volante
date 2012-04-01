@@ -355,7 +355,7 @@ class Bundle {
 		{
 			$element = array(DEFAULT_BUNDLE, strtolower($identifier));
 		}
-
+		
 		return static::$elements[$identifier] = $element;
 	}
 

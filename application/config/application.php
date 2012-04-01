@@ -119,7 +119,7 @@ return array(
 
 	'aliases' => array(
 		'Auth'       => 'Laravel\\Auth',
-		'Asset'      => 'Laravel\\Asset',
+		'Asset'      => 'AssetCompressor\\Asset',
 		'Autoloader' => 'Laravel\\Autoloader',
 		'Bundle'     => 'Laravel\\Bundle',
 		'Cache'      => 'Laravel\\Cache',
@@ -160,6 +160,7 @@ return array(
 		'Validator'  => 'Laravel\\Validator',
 		'View'       => 'Laravel\\View',
 		'Model'      => 'Eloquent\\Model',
+		'Volante'	 => 'Volante\\Core'
 	),
 
 );

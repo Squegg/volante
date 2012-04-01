@@ -44,5 +44,12 @@ return array(
 	'flui' => array(
 		'auto' => true,
 		'handles' => 'flui'
+	),
+	'volante' => array(
+		'handles' => 'volante',
+		'auto' => true
+	),
+	'assetcompressor' => array(
+		'auto' => true
 	)
 );

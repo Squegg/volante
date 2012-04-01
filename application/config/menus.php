@@ -1,22 +1,22 @@
 <?php
 return array(
 	'admin' => array(
-		'admin/dashboard' => array(
+		'volante/dashboard' => array(
 			'name' => __('admin.menu.dashboard')
 		),
-		'admin/pages' => array(
+		'volante/pages' => array(
 			'name' => __('admin.menu.pages')
 		),
-		'admin/layouts' => array(
+		'volante/layouts' => array(
 			'name' => __('admin.menu.layouts')
 		),
-		'admin/accounts' => array(
+		'volante/accounts' => array(
 			'name' => __('admin.menu.accounts')
 		),
-		'admin/modules' => array(
+		'volante/modules' => array(
 			'name' => __('admin.menu.modules')
 		),
-		'admin/settings' => array(
+		'volante/settings' => array(
 			'name' => __('admin.menu.settings')
 		)
 	)

@@ -8,11 +8,13 @@ $(function() {
 	}
 
 	$('#volante-widgets .volante-widget').draggable({    
-	    helper: 'clone',
-	    appendTo: 'body',
+	    helper: function( event ) {
+			return $('<div class="volante-widget-dragging">Flying High</div>');
+		},
+		appendTo: 'body',
 	    revert: 'invalid',
 	    connectToSortable: '.volante-region',
-	    zIndex: 100,
+	    //zIndex: 100,
 	   	cursor: 'move',
 	   	start: function(event, ui) {
 	   		moveWidget(event, ui);
@@ -38,6 +40,9 @@ $(function() {
 	        },
 	    }).sortable({
   		    cursor: 'move',
+  		    helper: function( event ) {
+				return $('<div class="volante-widget-dragging">Flying High</div>');
+			},
 	        connectWith: '.volante-region'
 	    });
 	});
