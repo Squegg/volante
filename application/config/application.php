@@ -8,7 +8,7 @@ return array(
 	|--------------------------------------------------------------------------
 	|
 	| The URL used to access your application without a trailing slash. The URL
-	| does nto have to be set. If it isn't we'll try our best to guess the URL
+	| does not have to be set. If it isn't we'll try our best to guess the URL
 	| of your application.
 	|
 	*/
@@ -121,6 +121,7 @@ return array(
 		'Auth'       => 'Laravel\\Auth',
 		'Asset'      => 'AssetCompressor\\Asset',
 		'Autoloader' => 'Laravel\\Autoloader',
+		'Blade'      => 'Laravel\\Blade',
 		'Bundle'     => 'Laravel\\Bundle',
 		'Cache'      => 'Laravel\\Cache',
 		'Config'     => 'Laravel\\Config',
@@ -128,6 +129,7 @@ return array(
 		'Cookie'     => 'Laravel\\Cookie',
 		'Crypter'    => 'Laravel\\Crypter',
 		'DB'         => 'Laravel\\Database',
+		'Eloquent'   => 'Laravel\\Database\\Eloquent\\Model',
 		'Event'      => 'Laravel\\Event',
 		'File'       => 'Laravel\\File',
 		'Filter'     => 'Laravel\\Routing\\Filter',
